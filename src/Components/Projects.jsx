@@ -15,7 +15,7 @@ const Projects = () => {
       description:
         "A full-featured job application platform built with the MERN stack, including user authentication, job posting, and applicant tracking.",
       link: "https://jobfiy-frontend.vercel.app/",
-      image: "/Capture5.PNG",
+      image: "/Capture77.PNG",
     },
     {
       title: "ChillMovies – Movie App",
