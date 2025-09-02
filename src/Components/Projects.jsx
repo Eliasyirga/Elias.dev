@@ -8,7 +8,7 @@ const Projects = () => {
       description:
         "A responsive, SEO-optimized business website for Grove Link Consult, built with Vite, React, and Tailwind CSS. Hosted on Vercel with fast performance and modern design.",
       link: "https://www.grovelinkconsult.com/",
-      image: "/Capture.PNG",
+      image: "/Capture88.PNG",
     },
     {
       title: "Jobify – Job Platform",
