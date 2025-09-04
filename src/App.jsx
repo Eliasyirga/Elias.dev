@@ -1,6 +1,10 @@
-import React from "react";
+// App.jsx
+import React, { Suspense, lazy } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./Pages/Home"; // adjust the path if your file structure is different
+import FancySpinner from "./Components/FancySpinner"; // your attractive spinner
+
+// Lazy load pages for better performance
+const Home = lazy(() => import("./Pages/Home"));
 
 const router = createBrowserRouter([
   {
@@ -10,7 +14,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Suspense fallback={<FancySpinner />}>
+      <RouterProvider router={router} />
+    </Suspense>
+  );
 }
 
 export default App;
