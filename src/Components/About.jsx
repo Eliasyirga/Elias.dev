@@ -62,16 +62,17 @@ const About = () => {
       className="relative min-h-screen w-full flex flex-col justify-center items-center px-4 md:px-8 py-12 md:py-20 bg-black text-white overflow-hidden"
     >
       <div className="max-w-6xl w-full flex flex-col md:flex-row gap-10 md:gap-16 items-center">
+        {/* Text Content */}
         <motion.div
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9 }}
-          className="w-full md:w-1/2 text-center md:text-left"
+          className="w-full md:w-1/2 text-center md:text-left space-y-4"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent drop-shadow-lg">
             About Me
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-4">
+          <p className="text-sm sm:text-base md:text-lg text-gray-300">
             I'm <span className="text-blue-400 font-semibold">Elias Yirga</span>
             , a{" "}
             <span className="text-blue-500 font-semibold">
@@ -81,47 +82,44 @@ const About = () => {
             <strong className="text-blue-300">MERN stack</strong>. I build
             clean, scalable, and user-friendly applications.
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-4">
-            I simplify complex problems with <strong>React</strong>,{" "}
+          <p className="text-sm sm:text-base md:text-lg text-gray-300">
+            I simplify complex problems using <strong>React</strong>,{" "}
             <strong>Node.js</strong>, <strong>Express</strong>, and{" "}
             <strong>MongoDB</strong>.
           </p>
           <p className="text-sm sm:text-base md:text-lg text-gray-300">
             Beyond coding, I stay updated on tech trends, contribute to open
-            source, and constantly improve my skills.
+            source, and continuously improve my skills.
           </p>
         </motion.div>
 
-        <div
-          className="flex justify-center relative w-full max-w-[250px] sm:max-w-[300px] md:max-w-[350px] lg:max-w-[400px] h-[220px] sm:h-[300px] md:h-[400px] lg:h-[450px]"
-          style={{
-            overflow: "visible",
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-        >
+        {/* Full Images without cards */}
+        <div className="flex justify-center relative w-full max-w-full md:max-w-[450px] h-[250px] sm:h-[350px] md:h-[400px] lg:h-[450px]">
           <AnimatePresence>
             {activeImages.map((img, i) => (
               <motion.img
                 key={img}
                 src={img}
                 alt={`Image ${i}`}
-                className="absolute top-0 left-0 w-full h-full object-cover rounded-2xl border-2 border-blue-500"
+                className="absolute top-0 left-0 w-full h-full object-contain cursor-pointer"
                 style={{ zIndex: i + 10 }}
-                initial={{ opacity: 0, x: "100%", rotate: 0 }}
+                initial={{ opacity: 0, x: "100%", rotate: 0, scale: 0.95 }}
                 animate={{
                   opacity: 1,
                   x: i * 8,
-                  rotate: i * 3,
+                  rotate: i * 2,
                   y: -i * 5,
+                  scale: 1,
                 }}
                 exit={{
                   opacity: 0,
                   x: windowWidth,
                   rotate: 0,
                   y: 0,
+                  scale: 0.95,
                 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
+                whileHover={{ scale: 1.03, rotate: i * 2 + 1 }}
               />
             ))}
           </AnimatePresence>

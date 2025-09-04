@@ -1,10 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-const roles = [
-  "Full Stack Developer",
-  "Frontend Developer",
-  "Backend Developer",
-];
+const roles = ["Full Stack Developer", "Python Developer"];
 
 const Hero = () => {
   const [text, setText] = useState("");
@@ -57,15 +53,12 @@ const Hero = () => {
         this.vy = (Math.random() - 0.5) * 1.2;
         this.radius = 2;
       }
-
       update() {
         this.x += this.vx;
         this.y += this.vy;
-
         if (this.x <= 0 || this.x >= canvas.width) this.vx *= -1;
         if (this.y <= 0 || this.y >= canvas.height) this.vy *= -1;
       }
-
       draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
@@ -87,12 +80,9 @@ const Hero = () => {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-
           if (distance < maxDistance) {
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(59, 130, 246, ${
-              1 - distance / maxDistance
-            })`;
+            ctx.strokeStyle = `rgba(59,130,246,${1 - distance / maxDistance})`;
             ctx.lineWidth = 0.7;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -116,7 +106,6 @@ const Hero = () => {
     initParticles();
     animate();
     window.addEventListener("resize", resizeCanvas);
-
     return () => window.removeEventListener("resize", resizeCanvas);
   }, []);
 
@@ -131,7 +120,7 @@ const Hero = () => {
         backgroundRepeat: "no-repeat",
       }}
     >
-      {/* Canvas particle layer */}
+      {/* Particle Canvas */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 z-0 pointer-events-none"
@@ -142,9 +131,9 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-20 max-w-3xl animate-fadeIn px-2 sm:px-4">
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight bg-gradient-to-r from-blue-400 to-blue-700 bg-clip-text text-transparent drop-shadow-xl">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 tracking-tight bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent drop-shadow-xl">
           Hi, I'm{" "}
-          <span className="text-white drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]">
+          <span className="text-white drop-shadow-[0_0_15px_rgba(59,130,246,0.9)]">
             Elias Yirga
           </span>
         </h1>
@@ -156,7 +145,7 @@ const Hero = () => {
           </span>
         </p>
 
-        <p className="text-gray-300 mb-8 sm:mb-10 max-w-md sm:max-w-lg mx-auto tracking-wide text-base sm:text-lg leading-relaxed drop-shadow-md">
+        <p className="text-gray-300 mb-8 sm:mb-10 max-w-lg mx-auto tracking-wide text-base sm:text-lg leading-relaxed drop-shadow-md">
           Building powerful, scalable web applications using the MERN stack —
           MongoDB, Express, React, and Node.js.
         </p>
@@ -164,13 +153,13 @@ const Hero = () => {
         <div className="flex justify-center gap-4 sm:gap-6 flex-wrap">
           <a
             href="#projects"
-            className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 rounded-xl font-medium sm:font-semibold hover:bg-blue-700 shadow-lg transition transform hover:-translate-y-1 hover:scale-105 text-sm sm:text-base"
+            className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 rounded-xl font-semibold hover:bg-blue-700 shadow-lg transition transform hover:-translate-y-1 hover:scale-105 text-sm sm:text-base"
           >
             View My Work
           </a>
           <a
             href="#contact"
-            className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-blue-600 rounded-xl text-blue-400 font-medium sm:font-semibold hover:bg-blue-600 hover:text-white shadow-lg transition transform hover:-translate-y-1 hover:scale-105 text-sm sm:text-base"
+            className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-blue-600 rounded-xl text-blue-400 font-semibold hover:bg-blue-600 hover:text-white shadow-lg transition transform hover:-translate-y-1 hover:scale-105 text-sm sm:text-base"
           >
             Hire Me
           </a>
@@ -179,11 +168,11 @@ const Hero = () => {
 
       <style>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(15px); }
+          from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
         .animate-fadeIn {
-          animation: fadeIn 0.8s ease forwards;
+          animation: fadeIn 1s ease forwards;
         }
 
         @keyframes blinkCursor {

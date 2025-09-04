@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,64 +14,68 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-black/80 to-transparent text-white font-[Poppins]">
-      <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 w-full z-50 bg-black/90 text-white shadow-md font-[Poppins]">
+      <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
         {/* Logo and Title */}
         <div className="flex items-center space-x-3">
-          <div className="bg-white p-1 rounded-full shadow-md">
-            <img
-              src="/logo.webp"
-              alt="Elias Logo"
-              className="w-9 h-9 rounded-full object-cover"
-            />
-          </div>
-          <h1 className="text-3xl font-bold tracking-wide">
-            Elias<span className="text-blue-500">.dev</span>
-          </h1>
+          <motion.img
+            whileHover={{ scale: 1.1 }}
+            src="/logo.webp"
+            alt="Elias Logo"
+            className="w-10 h-10 rounded-full object-cover cursor-pointer"
+          />
+          <motion.h1
+            whileHover={{ scale: 1.05 }}
+            className="text-2xl md:text-3xl font-bold text-blue-400 cursor-pointer hover:text-blue-500 transition-colors duration-300"
+          >
+            Elias<span className="text-white">.dev</span>
+          </motion.h1>
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-8 text-lg font-semibold">
+        <ul className="hidden md:flex space-x-8 text-lg font-medium">
           {navItems.map((item) => (
-            <li key={item.label}>
+            <li key={item.label} className="group relative">
               <a
                 href={item.href}
-                className="relative group transition-all duration-300"
+                className="py-1 px-2 hover:text-blue-400 transition-colors duration-300"
               >
                 {item.label}
-                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-500 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-blue-400 transition-all duration-300 group-hover:w-full" />
               </a>
             </li>
           ))}
         </ul>
 
-        {/* Mobile Toggle Button */}
+        {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-white focus:outline-none hover:text-blue-400 transition duration-300"
+          className="md:hidden text-white hover:text-blue-400 transition-colors duration-300"
         >
-          {isOpen ? <X size={26} /> : <Menu size={26} />}
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile Menu */}
-      {isOpen && (
-        <div className="md:hidden bg-black/90 text-center py-4">
-          <ul className="flex flex-col space-y-4 text-lg font-semibold">
-            {navItems.map((item) => (
-              <li key={item.label}>
-                <a
-                  href={item.href}
-                  onClick={() => setIsOpen(false)}
-                  className="block hover:text-blue-400 transition duration-300"
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+      <motion.div
+        initial={{ height: 0 }}
+        animate={{ height: isOpen ? "auto" : 0 }}
+        className="md:hidden bg-black/90 text-center overflow-hidden transition-all duration-500"
+      >
+        <ul className="flex flex-col space-y-4 text-lg font-medium py-4">
+          {navItems.map((item) => (
+            <li key={item.label}>
+              <a
+                href={item.href}
+                onClick={() => setIsOpen(false)}
+                className="block hover:text-blue-400 transition-colors duration-300"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </motion.div>
     </nav>
   );
 };

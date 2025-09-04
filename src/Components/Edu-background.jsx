@@ -82,17 +82,15 @@ const EducationExperience = () => {
         className="relative bg-fixed bg-center bg-cover px-4 md:px-0"
         style={{ backgroundImage: "url('/back5.webp')" }}
       >
-        {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/80 to-black/90 pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/90 via-black/80 to-black/90 z-0 pointer-events-none" />
 
-        {/* Content */}
         <section className="relative z-10 max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 pb-24">
           <motion.h3
             initial={{ opacity: 0, y: -30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="text-3xl md:text-4xl font-extrabold mb-16 text-center
-              bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent drop-shadow-lg pt-12"
+            bg-gradient-to-r from-blue-400 to-cyan-400 via-purple-500 bg-clip-text text-transparent drop-shadow-xl pt-12"
           >
             Academics & Experience
           </motion.h3>
@@ -102,11 +100,11 @@ const EducationExperience = () => {
               <motion.div
                 key={i}
                 whileHover={{
-                  scale: 1.06,
-                  boxShadow: "0 0 30px rgb(59 130 246 / 0.9)",
+                  scale: 1.08,
+                  boxShadow: "0 20px 40px rgb(59 130 246 / 0.85)",
                 }}
-                transition={{ type: "spring", stiffness: 300 }}
-                className="bg-gradient-to-br from-blue-900/90 to-black/95 border border-blue-700 rounded-3xl p-7 shadow-2xl backdrop-blur-md text-gray-200 cursor-pointer flex flex-col"
+                transition={{ type: "spring", stiffness: 280 }}
+                className="bg-gradient-to-br from-blue-900/90 via-black/95 to-black/95 border border-blue-700 rounded-3xl p-7 shadow-2xl backdrop-blur-md text-gray-200 cursor-pointer flex flex-col transform transition-transform duration-500"
               >
                 <div className="flex items-center gap-4 mb-5">
                   <GraduationCap className="text-blue-400 w-9 h-9 md:w-10 md:h-10" />
@@ -126,10 +124,10 @@ const EducationExperience = () => {
 
           <motion.div
             whileHover={{
-              scale: 1.04,
-              boxShadow: "0 0 35px rgb(59 130 246 / 0.95)",
+              scale: 1.06,
+              boxShadow: "0 20px 45px rgb(59 130 246 / 0.9)",
             }}
-            transition={{ type: "spring", stiffness: 250 }}
+            transition={{ type: "spring", stiffness: 260 }}
             className="bg-gradient-to-br from-blue-900/95 to-black/95 border border-blue-700 rounded-3xl p-10 md:p-12 shadow-2xl backdrop-blur-md cursor-pointer"
           >
             <div className="flex items-center gap-5 mb-10">
@@ -153,7 +151,7 @@ const EducationExperience = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="text-2xl md:text-3xl font-bold text-blue-400 mb-12 text-center"
+          className="text-2xl md:text-3xl font-bold text-blue-400 mb-12 text-center drop-shadow-lg"
         >
           Certifications
         </motion.h4>
@@ -167,8 +165,8 @@ const EducationExperience = () => {
             <motion.div
               key={idx}
               whileHover={{
-                scale: 1.06,
-                boxShadow: "0 0 20px rgb(59 130 246 / 0.85)",
+                scale: 1.08,
+                boxShadow: "0 0 25px rgb(59 130 246 / 0.9)",
                 zIndex: 10,
               }}
               whileTap={{ scale: 0.95 }}
@@ -184,7 +182,7 @@ const EducationExperience = () => {
                 className="w-full h-full object-cover object-center filter brightness-90 hover:brightness-110 transition duration-300"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6 rounded-2xl">
+              <div className="absolute inset-0 bg-black/40 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6 rounded-2xl">
                 <p className="text-white font-semibold text-lg select-none pointer-events-none">
                   Certificate {idx + 1}
                 </p>
@@ -209,34 +207,6 @@ const EducationExperience = () => {
             />
           ))}
         </div>
-
-        <style jsx>{`
-          /* Hide scrollbar */
-          .scrollbar-hide::-webkit-scrollbar {
-            display: none;
-          }
-          .scrollbar-hide {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-          /* Custom scrollbar track and thumb */
-          div.flex.overflow-x-auto::-webkit-scrollbar {
-            height: 8px;
-          }
-          div.flex.overflow-x-auto::-webkit-scrollbar-track {
-            background: transparent;
-          }
-          div.flex.overflow-x-auto::-webkit-scrollbar-thumb {
-            background: repeating-linear-gradient(
-              90deg,
-              #3b82f6 0,
-              #3b82f6 2px,
-              transparent 2px,
-              transparent 6px
-            );
-            border-radius: 4px;
-          }
-        `}</style>
       </section>
     </>
   );
