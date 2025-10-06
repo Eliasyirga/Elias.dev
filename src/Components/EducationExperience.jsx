@@ -34,31 +34,31 @@ const EducationExperience = () => {
       className="relative min-h-screen w-full bg-fixed bg-center bg-cover px-4"
       style={{ backgroundImage: "url('/back5.webp')" }}
     >
-      {/* Optional overlay for readability */}
-      <div className="absolute inset-0 bg-black/40 z-0 pointer-events-none" />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/50 z-0 pointer-events-none" />
 
-      <section className="relative z-10 w-full max-w-full mx-auto px-2 sm:px-4 lg:px-8 py-16">
+      <section className="relative z-10 max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-16">
         {/* Heading */}
         <motion.h3
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-12 text-center text-white drop-shadow-lg"
+          className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-12 text-center text-white bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent drop-shadow-lg"
         >
           Academics & Experience
         </motion.h3>
 
         {/* Education Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-12 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-12">
           {educationData.map(({ title, years, description }, i) => (
             <motion.div
               key={i}
               whileHover={{
                 scale: 1.05,
-                boxShadow: "0 15px 30px rgb(59 130 246 / 0.5)",
+                boxShadow: "0 15px 30px rgba(59,130,246,0.5)",
               }}
               transition={{ type: "spring", stiffness: 280 }}
-              className="bg-black/30 border border-blue-700/50 rounded-2xl p-5 sm:p-7 shadow-lg text-gray-200 cursor-pointer flex flex-col transform transition-transform duration-500 backdrop-blur-sm w-full"
+              className="bg-black/40 border border-blue-700/50 rounded-3xl p-6 sm:p-8 shadow-lg backdrop-blur-lg text-gray-200 cursor-pointer flex flex-col h-full transform transition-transform duration-500"
             >
               <div className="flex items-center gap-3 mb-4">
                 <GraduationCap className="text-blue-400 w-8 h-8 sm:w-9 sm:h-9" />
@@ -80,10 +80,10 @@ const EducationExperience = () => {
         <motion.div
           whileHover={{
             scale: 1.05,
-            boxShadow: "0 15px 35px rgb(59 130 246 / 0.6)",
+            boxShadow: "0 20px 40px rgba(59,130,246,0.6)",
           }}
           transition={{ type: "spring", stiffness: 260 }}
-          className="bg-black/30 border border-blue-700/50 rounded-2xl p-7 sm:p-10 shadow-lg backdrop-blur-sm cursor-pointer w-full"
+          className="bg-black/40 border border-blue-700/50 rounded-3xl p-7 sm:p-10 shadow-lg backdrop-blur-lg cursor-pointer w-full"
         >
           <div className="flex items-center gap-4 mb-6 sm:mb-10">
             <Briefcase className="text-blue-400 w-8 h-8 sm:w-9 sm:h-9" />

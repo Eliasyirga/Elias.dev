@@ -62,17 +62,17 @@ const About = () => {
       className="relative min-h-screen w-full flex flex-col justify-center items-center px-4 md:px-8 py-12 md:py-20 bg-black text-white overflow-hidden"
     >
       <div className="max-w-6xl w-full flex flex-col md:flex-row gap-10 md:gap-16 items-center">
-        {/* Text Content */}
+        {/* Text Content with Glass Panel */}
         <motion.div
           initial={{ opacity: 0, x: -60 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.9 }}
-          className="w-full md:w-1/2 text-center md:text-left space-y-4"
+          className="w-full md:w-1/2 relative bg-black/40 backdrop-blur-lg rounded-3xl p-6 md:p-10 shadow-lg"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent drop-shadow-lg">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 bg-clip-text text-transparent drop-shadow-xl animate-gradient-x">
             About Me
           </h2>
-          <p className="text-sm sm:text-base md:text-lg text-gray-300">
+          <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-3">
             I'm <span className="text-blue-400 font-semibold">Elias Yirga</span>
             , a{" "}
             <span className="text-blue-500 font-semibold">
@@ -82,7 +82,7 @@ const About = () => {
             <strong className="text-blue-300">MERN stack</strong>. I build
             clean, scalable, and user-friendly applications.
           </p>
-          <p className="text-sm sm:text-base md:text-lg text-gray-300">
+          <p className="text-sm sm:text-base md:text-lg text-gray-300 mb-3">
             I simplify complex problems using <strong>React</strong>,{" "}
             <strong>Node.js</strong>, <strong>Express</strong>, and{" "}
             <strong>MongoDB</strong>.
@@ -93,7 +93,7 @@ const About = () => {
           </p>
         </motion.div>
 
-        {/* Full Images without cards */}
+        {/* Full Images without changing them */}
         <div className="flex justify-center relative w-full max-w-full md:max-w-[450px] h-[250px] sm:h-[350px] md:h-[400px] lg:h-[450px]">
           <AnimatePresence>
             {activeImages.map((img, i) => (
@@ -125,6 +125,18 @@ const About = () => {
           </AnimatePresence>
         </div>
       </div>
+
+      {/* Extra floating accent elements */}
+      <motion.div
+        className="absolute -top-20 -left-20 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl animate-pulse-slow"
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 6, repeat: Infinity }}
+      />
+      <motion.div
+        className="absolute -bottom-20 -right-20 w-60 h-60 bg-cyan-500/20 rounded-full blur-3xl animate-pulse-slow"
+        animate={{ scale: [1, 1.15, 1] }}
+        transition={{ duration: 7, repeat: Infinity }}
+      />
     </section>
   );
 };

@@ -24,13 +24,19 @@ const Projects = () => {
       link: "https://chill-movies.vercel.app/",
       image: "/Capture6.PNG",
     },
-
     {
       title: "Tarikshiro – Restaurant Website",
       description:
         "A modern and responsive restaurant site with an interactive menu, reservation system, and customer testimonials built using React & Tailwind.",
       link: "https://tarik-shiro.vercel.app/",
       image: "/Capture2.PNG",
+    },
+    {
+      title: "Ethio Amber Trading – Export Company Website",
+      description:
+        "A modern, multilingual, SEO-optimized company website built with React, Vite, and Tailwind CSS for showcasing Ethiopian export products like pulses andoilSeeds. Hosted on cPanel for fast global performance.",
+      link: "https://ethioambertrading.com/",
+      image: "/Capture213.PNG",
     },
   ];
 

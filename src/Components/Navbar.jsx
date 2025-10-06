@@ -14,7 +14,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-black/90 text-white shadow-md font-[Poppins]">
+    <nav className="fixed top-0 left-0 w-full z-50 text-white font-[Poppins]">
       <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
         {/* Logo and Title */}
         <div className="flex items-center space-x-3">
@@ -60,7 +60,7 @@ const Navbar = () => {
       <motion.div
         initial={{ height: 0 }}
         animate={{ height: isOpen ? "auto" : 0 }}
-        className="md:hidden bg-black/90 text-center overflow-hidden transition-all duration-500"
+        className="md:hidden text-center overflow-hidden transition-all duration-500 bg-gradient-to-b from-black/40 to-black/80"
       >
         <ul className="flex flex-col space-y-4 text-lg font-medium py-4">
           {navItems.map((item) => (
