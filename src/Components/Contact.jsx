@@ -8,7 +8,7 @@ import { FaLinkedin, FaGithub, FaTwitter, FaFacebook } from "react-icons/fa";
 
 const FooterContact = () => {
   return (
-    <footer className="relative bg-gradient-to-tl from-black via-gray-900 to-black text-gray-300 font-[Poppins] overflow-hidden py-24">
+    <footer id="contact" className="relative bg-gradient-to-tl from-black via-gray-900 to-black text-gray-300 font-[Poppins] overflow-hidden py-24">
       {/* Soft background wave */}
       <div className="absolute -bottom-32 left-1/2 transform -translate-x-1/2 w-[150%] h-96 bg-blue-900/10 rounded-full filter blur-3xl animate-pulse-slow pointer-events-none"></div>
       <div className="absolute -top-32 -right-1/4 w-[60%] h-80 bg-purple-800/10 rounded-full filter blur-3xl animate-pulse-slow pointer-events-none"></div>

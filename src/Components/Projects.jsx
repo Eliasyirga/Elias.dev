@@ -43,7 +43,7 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="w-full bg-gradient-to-b from-black via-gray-900 to-black py-20 font-[Poppins]"
+      className="w-full bg-gradient-to-b from-black via-gray-900 to-black  font-[Poppins]"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         {/* Title */}

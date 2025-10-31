@@ -1,117 +1,133 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const certificateImages = [
+  "/pic1.jpg",
+  "/pic2.jpg",
+  "/pic3.jpg",
+  "/pic4.jpg",
+  "/pic5.jpg",
+  "/pic6.jpg",
+];
 
 const Certificates = () => {
-  const certificateImages = [
-    "/pic1.jpg",
-    "/pic2.jpg",
-    "/pic3.jpg",
-    "/pic4.jpg",
-    "/pic5.jpg",
-    "/pic6.jpg",
-  ];
+  const [selectedImage, setSelectedImage] = useState(null);
+  const carouselRef = useRef(null);
 
-  const scrollContainerRef = useRef(null);
-  const [cardWidth, setCardWidth] = useState(0);
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const totalDots = 4;
+  const scroll = (direction) => {
+    if (!carouselRef.current) return;
+    const width = carouselRef.current.offsetWidth;
+    // Scroll dynamically by screen width
+    let scrollWidth = width;
+    if (window.innerWidth >= 1024) scrollWidth = width / 3;
+    else if (window.innerWidth >= 640) scrollWidth = width / 2;
 
-  // Update card width on resize
-  useEffect(() => {
-    const container = scrollContainerRef.current;
-    if (!container) return;
+    const scrollAmount =
+      direction === "left"
+        ? carouselRef.current.scrollLeft - scrollWidth
+        : carouselRef.current.scrollLeft + scrollWidth;
 
-    const firstCard = container.querySelector(".cert-card");
-    if (firstCard) setCardWidth(firstCard.offsetWidth + 24);
-
-    const handleResize = () => {
-      if (firstCard) setCardWidth(firstCard.offsetWidth + 24);
-    };
-
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  const scrollToImage = (index) => {
-    if (!scrollContainerRef.current || cardWidth === 0) return;
-
-    scrollContainerRef.current.scrollTo({
-      left: index * cardWidth,
-      behavior: "smooth",
-    });
-
-    setCurrentSlide(index);
+    carouselRef.current.scrollTo({ left: scrollAmount, behavior: "smooth" });
   };
 
-  // Auto-scroll one image at a time
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => {
-        const nextIndex = (prev + 1) % certificateImages.length;
-        scrollToImage(nextIndex);
-        return nextIndex;
-      });
-    }, 4000); // 4 seconds per image
-
-    return () => clearInterval(interval);
-  }, [cardWidth]);
-
-  const imagesPerDot = Math.ceil(certificateImages.length / totalDots);
-
   return (
-    <section className="w-full mx-auto px-4 sm:px-6 md:px-8 py-16 md:py-20 bg-gradient-to-br from-black via-gray-900 to-black">
-      <h4 className="text-xl sm:text-2xl md:text-3xl font-bold text-blue-400 mb-8 md:mb-12 text-center drop-shadow-lg">
-        Certifications
-      </h4>
-
-      <div
-        ref={scrollContainerRef}
-        className="flex gap-4 sm:gap-6 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-1 sm:px-3"
+    <section className="min-h-screen bg-black text-white py-10 relative overflow-hidden">
+      {/* Title */}
+      <h1
+        className="text-4xl md:text-5xl font-extrabold text-center mb-16
+        bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600
+        drop-shadow-xl animate-gradient-x"
       >
-        {certificateImages.map((img, idx) => (
-          <div
-            key={idx}
-            className="cert-card snap-center flex-shrink-0
-              w-[80vw] sm:w-[45vw] md:w-[30vw] h-64 sm:h-72 md:h-80
-              rounded-2xl border-2 border-blue-500 shadow-lg
-              overflow-hidden relative bg-gradient-to-tr from-blue-900 via-blue-800 to-black"
+        My Certificates
+      </h1>
+
+      {/* Carousel Container */}
+      <div className="relative w-full">
+        {/* Left Arrow */}
+        <motion.button
+          onClick={() => scroll("left")}
+          whileHover={{ scale: 1.15 }}
+          className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 
+            bg-gradient-to-r from-blue-800/60 to-cyan-700/60
+            hover:from-blue-600 hover:to-cyan-600 
+            p-3 sm:p-5 rounded-full backdrop-blur-md 
+            border border-blue-400/40 shadow-lg active:scale-95 transition"
+        >
+          &#10094;
+        </motion.button>
+
+        {/* Certificates Scroll Area */}
+        <div
+          ref={carouselRef}
+          className="flex gap-6 overflow-x-scroll scrollbar-hide scroll-smooth px-4 sm:px-12"
+        >
+          {certificateImages.map((src, index) => (
+            <motion.div
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 cursor-pointer relative rounded-3xl
+                bg-gradient-to-tr from-blue-900/40 to-cyan-900/40 backdrop-blur-xl shadow-2xl
+                border border-blue-500/30 hover:border-blue-400 transition-all duration-500"
+              onClick={() => setSelectedImage(src)}
+            >
+              <div className="relative overflow-hidden rounded-3xl p-4">
+                <img
+                  src={src}
+                  alt={`Certificate ${index + 1}`}
+                  className="w-full h-80 object-contain rounded-2xl shadow-inner shadow-blue-600/50"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/30 rounded-2xl pointer-events-none" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Right Arrow */}
+        <motion.button
+          onClick={() => scroll("right")}
+          whileHover={{ scale: 1.15 }}
+          className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 
+            bg-gradient-to-l from-blue-800/60 to-cyan-700/60
+            hover:from-blue-600 hover:to-cyan-600 
+            p-3 sm:p-5 rounded-full backdrop-blur-md 
+            border border-blue-400/40 shadow-lg active:scale-95 transition"
+        >
+          &#10095;
+        </motion.button>
+      </div>
+
+      {/* Modal for Viewing Certificate */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div
+            className="fixed inset-0 bg-black/95 flex items-center justify-center z-50 p-6 backdrop-blur-md"
+            onClick={() => setSelectedImage(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            <img
-              src={img}
-              alt={`Certificate ${idx + 1}`}
-              className="w-full h-full object-cover object-center transition-transform duration-500"
-              loading="lazy"
+            <motion.img
+              src={selectedImage}
+              alt="Selected Certificate"
+              className="max-h-[90%] max-w-[90%] rounded-3xl border border-blue-400 shadow-2xl"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.3 }}
             />
-          </div>
-        ))}
-      </div>
-
-      {/* Dots */}
-      <div className="flex justify-center mt-6 md:mt-8 space-x-3 sm:space-x-4">
-        {Array.from({ length: totalDots }).map((_, idx) => {
-          const start = idx * imagesPerDot;
-          const isActive =
-            currentSlide >= start && currentSlide < start + imagesPerDot;
-          return (
             <button
-              key={idx}
-              onClick={() => scrollToImage(start)}
-              className={`w-3 sm:w-4 h-3 sm:h-4 rounded-full border-2 border-blue-400
-                ${isActive ? "bg-blue-400" : "bg-transparent"}
-                transition-all duration-300`}
-            />
-          );
-        })}
-      </div>
+              className="absolute top-6 right-6 text-white text-4xl font-bold hover:text-blue-400 transition"
+              onClick={() => setSelectedImage(null)}
+            >
+              &times;
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-      <style jsx>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
+      {/* Background Glow Accents */}
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
     </section>
   );
 };
