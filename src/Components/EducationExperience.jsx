@@ -1,5 +1,5 @@
 import React from "react";
-import { FaSchool, FaLaptopCode } from "react-icons/fa";
+import { FaGraduationCap, FaUserTie, FaCircle } from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const education = [
@@ -19,100 +19,174 @@ const education = [
     title: "Bahirdar University",
     years: "2022 – Present",
     description:
-      "Currently pursuing Computer Engineering, focusing on Software Development, AI, and networking.",
+      "Currently pursuing Computer Engineering, focusing on Software Development, AI, and Networking.",
   },
 ];
 
-const experiencePoints = [
-  "Participated in various college projects, developing real-world applications and strong teamwork skills.",
-  "Completed internship at Alyah Software, working on full-stack MERN projects.",
-  "Worked at Eaglelion System Technologies as a Frontend Developer, crafting modern, responsive UIs.",
-  "Equipped with strong problem-solving and practical experience in modern web technologies.",
+const experience = [
+  {
+    position: "College Projects",
+    place: "Bahirdar University",
+    duration: "2022 – Present",
+    description:
+      "Developed full-stack apps and collaborated with peers on real-world academic projects.",
+  },
+  {
+    position: "Full-stack Developer Intern",
+    place: "Alyah Software",
+    duration: "June 2023 – Sept 2023",
+    description:
+      "Worked on MERN projects and cloud deployment solutions in a fast-paced environment.",
+  },
+  {
+    position: "Frontend Developer",
+    place: "Eaglelion System Technologies",
+    duration: "2021 – 2022",
+    description:
+      "Built responsive, user-friendly UIs using React, Tailwind, and Framer Motion.",
+  },
+  {
+    position: "Web Technologies Enthusiast",
+    place: "Personal/Academic",
+    duration: "Ongoing",
+    description:
+      "Exploring AI, web optimization, and emerging technologies in modern web ecosystems.",
+  },
 ];
+
+const stagger = {
+  hidden: {},
+  show: {
+    transition: { staggerChildren: 0.15 },
+  },
+};
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+};
+
+const Timeline = ({ items, isEducation }) => (
+  <motion.ul
+    className="flex flex-col gap-8 relative pl-6"
+    initial="hidden"
+    whileInView="show"
+    viewport={{ once: true, amount: 0.25 }}
+    variants={stagger}
+  >
+    <span
+      className={`absolute left-2 top-4 bottom-0 w-1 rounded-full bg-gradient-to-b ${
+        isEducation
+          ? "from-blue-600/80 to-transparent"
+          : "from-sky-500/80 to-transparent"
+      }`}
+    ></span>
+    {items.map((item, i) => (
+      <motion.li
+        className="relative flex items-start gap-5 group"
+        variants={fadeInUp}
+        key={i}
+      >
+        <span className="relative z-10 flex items-center justify-center mt-2">
+          {isEducation ? (
+            i === items.length - 1 ? (
+              <FaGraduationCap className="text-blue-400 text-2xl animate-bounce" />
+            ) : (
+              <FaCircle className="text-blue-300 text-base group-hover:text-blue-400 transition-colors" />
+            )
+          ) : i === 0 ? (
+            <FaUserTie className="text-sky-400 text-2xl animate-pulse" />
+          ) : (
+            <FaCircle className="text-sky-300 text-base group-hover:text-sky-400 transition-colors" />
+          )}
+        </span>
+
+        <div className="bg-gradient-to-r from-black/70 via-blue-900/30 to-sky-900/30 border border-blue-400/20 hover:border-blue-400/60 rounded-2xl p-5 shadow-lg w-full transition-all duration-300 group-hover:scale-[1.03] backdrop-blur-lg">
+          <h3
+            className={`${
+              isEducation ? "text-blue-300" : "text-sky-300"
+            } text-lg sm:text-xl md:text-2xl font-semibold mb-1 group-hover:text-blue-400 transition-colors`}
+          >
+            {isEducation ? item.title : item.position}
+          </h3>
+          <span className="block text-sm italic mb-1 text-blue-200">
+            {isEducation ? item.years : item.duration}
+          </span>
+          {!isEducation && (
+            <span className="block text-xs mb-2 text-blue-100 uppercase tracking-wide">
+              {item.place}
+            </span>
+          )}
+          <p className="text-gray-200 text-base leading-relaxed">
+            {item.description}
+          </p>
+        </div>
+      </motion.li>
+    ))}
+  </motion.ul>
+);
 
 const Resume = () => {
   return (
-    <section className="min-h-screen bg-black text-white px-6 md:px-16  font-sans relative overflow-hidden">
-      {/* Title */}
+    <section className="no-scrollbar min-h-screen relative py-16 px-4 sm:px-8 md:px-12 bg-gradient-to-br from-black via-gray-950 to-blue-950 flex flex-col items-center justify-center w-full overflow-hidden">
+      {/* Background effects */}
+      <div className="pointer-events-none absolute -top-60 -left-60 w-[500px] h-[500px] bg-blue-800/30 blur-3xl rounded-full"></div>
+      <div className="pointer-events-none absolute -bottom-80 -right-80 w-[500px] h-[450px] bg-sky-700/20 blur-3xl rounded-full"></div>
+
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-600 drop-shadow-xl animate-gradient-x"
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+        className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-300 tracking-wide drop-shadow-[0_2px_20px_rgba(0,180,255,0.3)]"
       >
-        My Resume
+        Education & Experience
       </motion.h1>
 
-      {/* Content Grid */}
-      <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.8 }}
+        className="text-gray-300 text-center text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-14 font-light"
+      >
+        A journey of growth — blending strong education with real-world experience in tech innovation.
+      </motion.p>
+
+      <div className="z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 w-full max-w-6xl">
         {/* Education */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.8 }}
-          className="bg-gradient-to-br from-blue-900/30 to-cyan-900/30 rounded-3xl p-6 sm:p-10 border border-blue-500/30 shadow-[0_0_20px_rgba(59,130,246,0.25)] backdrop-blur-xl hover:shadow-[0_0_40px_rgba(59,130,246,0.5)] transition-all duration-500"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-blue-400 mb-8 flex items-center gap-3">
-            <FaSchool className="text-blue-400" /> Education
-          </h2>
-          <ul className="flex flex-col gap-6">
-            {education.map((edu, index) => (
-              <motion.li
-                key={index}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="group flex flex-col gap-1 p-4 rounded-xl hover:bg-blue-500/10 transition-all duration-300"
-              >
-                <h3 className="text-xl sm:text-2xl font-semibold text-blue-300 group-hover:text-blue-400">
-                  {edu.title}
-                </h3>
-                <span className="text-sm italic text-blue-200">{edu.years}</span>
-                <p className="text-gray-300 text-base leading-relaxed">
-                  {edu.description}
-                </p>
-              </motion.li>
-            ))}
-          </ul>
+          <div className="flex items-center gap-4 mb-8">
+            <FaGraduationCap className="text-3xl text-blue-400 animate-pulse" />
+            <h2 className="text-2xl md:text-3xl font-bold text-blue-300">
+              Education
+            </h2>
+          </div>
+          <Timeline items={education} isEducation />
         </motion.div>
 
         {/* Experience */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.25 }}
           transition={{ duration: 0.8 }}
-          className="bg-gradient-to-bl from-cyan-900/30 to-blue-900/30 rounded-3xl p-6 sm:p-10 border border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.25)] backdrop-blur-xl hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-500"
         >
-          <h2 className="text-3xl sm:text-4xl font-bold text-cyan-400 mb-8 flex items-center gap-3">
-            <FaLaptopCode className="text-cyan-400" /> Experience
-          </h2>
-          <ul className="flex flex-col gap-6">
-            {experiencePoints.map((point, index) => (
-              <motion.li
-                key={index}
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.15 }}
-                className="group flex items-start gap-3 p-4 rounded-xl hover:bg-cyan-500/10 transition-all duration-300"
-              >
-                <FaLaptopCode className="text-cyan-400 mt-1 text-lg flex-shrink-0 group-hover:text-cyan-300 transition-colors" />
-                <p className="text-gray-300 text-base sm:text-lg leading-relaxed">
-                  {point}
-                </p>
-              </motion.li>
-            ))}
-          </ul>
+          <div className="flex items-center gap-4 mb-8">
+            <FaUserTie className="text-3xl text-sky-400 animate-pulse" />
+            <h2 className="text-2xl md:text-3xl font-bold text-sky-300">
+              Experience
+            </h2>
+          </div>
+          <Timeline items={experience} />
         </motion.div>
       </div>
 
-      {/* Background Accents */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+      <div className="absolute left-1/2 bottom-2 -translate-x-1/2 w-[180px] h-2 bg-gradient-to-r from-blue-500 via-sky-400 to-blue-600 rounded-full blur-sm opacity-70" />
     </section>
   );
 };
