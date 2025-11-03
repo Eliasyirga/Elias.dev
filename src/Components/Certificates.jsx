@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const certificateImages = [
   "/pic1.jpg",
   "/pic2.jpg",
+  "55.png",
   "/pic3.jpg",
   "/pic4.jpg",
   "/pic5.jpg",
@@ -31,7 +32,7 @@ const Certificates = () => {
   };
 
   return (
-    <section className="min-h-screen bg-black text-white py-10 relative overflow-hidden">
+    <section className="min-h-screen bg-black text-white pt-10 mb-0 relative overflow-hidden">
       {/* Title */}
       <h1
         className="text-4xl md:text-5xl font-extrabold text-center mb-16
