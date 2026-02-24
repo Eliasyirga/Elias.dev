@@ -38,6 +38,13 @@ const Projects = () => {
       link: "https://ethioambertrading.com/",
       image: "/Capture213.PNG",
     },
+    {
+      title: "Marmik Consult PLC – Official Company Website",
+      description:
+        "A professional, responsive, and SEO-optimized corporate website developed for Marmik Consult PLC using React, Vite, and Tailwind CSS. Designed with a modern UI, smooth animations, and optimized performance for global access.",
+      link: "https://marmikconsultplc.com/",
+      image: "/marmik.PNG", // replace with your actual screenshot file
+    },
   ];
 
   return (
