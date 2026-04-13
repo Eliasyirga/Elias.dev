@@ -1,37 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 
-const certificateImages = [
-  "/pic1.jpg",
-  "/pic2.jpg",
-  "/pic3.jpg",
-  "/pic4.jpg",
-  "/pic5.jpg",
-  "/pic6.jpg",
-];
+const MinimalistCertificates = () => {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
-const Certificates = () => {
   return (
-    <div className="min-h-screen bg-black text-white p-8 font-sans">
-      <h1 className="text-4xl font-bold text-center mb-12 text-blue-400 drop-shadow-lg">
-        My Certificates
-      </h1>
+    <section className="bg-white py-32 px-6">
+      <div className="max-w-5xl mx-auto">
+        <span className="text-[10px] font-black uppercase tracking-[0.5em] text-slate-400 mb-12 block">
+          Technical Validation
+        </span>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {certificateImages.map((src, index) => (
-          <div
-            key={index}
-            className="overflow-hidden rounded-2xl border border-blue-400 shadow-lg hover:scale-105 transform transition-transform duration-300"
-          >
-            <img
-              src={src}
-              alt={`Certificate ${index + 1}`}
-              className="w-full h-60 object-cover"
-            />
-          </div>
-        ))}
+        <div className="flex flex-col border-t border-slate-100">
+          {certificates.map((cert, index) => (
+            <div
+              key={cert.id}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
+              className="group relative flex items-center justify-between py-10 border-b border-slate-100 cursor-pointer"
+            >
+              <div className="z-10">
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest block mb-2">
+                  {cert.issuer}
+                </span>
+                <h3 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-slate-900 group-hover:translate-x-4 transition-transform duration-500">
+                  {cert.title}
+                </h3>
+              </div>
+
+              <div className="z-10 opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:rotate-45">
+                <ArrowUpRight size={40} className="text-slate-900" />
+              </div>
+
+              {/* Floating Image Preview */}
+              <AnimatePresence>
+                {hoveredIndex === index && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8, x: -20 }}
+                    animate={{ opacity: 1, scale: 1, x: 0 }}
+                    exit={{ opacity: 0, scale: 0.8, x: -20 }}
+                    className="absolute right-[20%] pointer-events-none z-0 hidden lg:block"
+                  >
+                    <img
+                      src={cert.src}
+                      alt="Preview"
+                      className="w-64 h-40 object-cover rounded-2xl shadow-2xl grayscale"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Certificates;
+export default MinimalistCertificates;

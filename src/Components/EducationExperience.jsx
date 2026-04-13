@@ -1,192 +1,168 @@
 import React from "react";
-import { FaGraduationCap, FaUserTie, FaCircle } from "react-icons/fa";
+import {
+  FaGraduationCap,
+  FaUserTie,
+  FaCalendarAlt,
+  FaMapMarkerAlt,
+} from "react-icons/fa";
 import { motion } from "framer-motion";
 
 const education = [
   {
-    title: "Bure Yohanes Primary School",
-    years: "2010 – 2017",
-    description:
-      "Completed primary education with a strong foundation in core subjects.",
-  },
-  {
-    title: "Ras Bit-Woded Atikem Mengesh High School",
-    years: "2018 – 2021",
-    description:
-      "Completed secondary education, preparing for higher studies and personal growth.",
-  },
-  {
     title: "Bahirdar University",
+    sub: "Computer Engineering",
     years: "2022 – Present",
     description:
-      "Currently pursuing Computer Engineering, focusing on Software Development, AI, and Networking.",
+      "Specializing in Software Development and AI. Engaging in advanced networking and system architecture projects.",
+    current: true,
+  },
+  {
+    title: "Atikem Mengesh High School",
+    sub: "Secondary Education",
+    years: "2018 – 2021",
+    description: "Focus on natural sciences and foundational mathematics.",
+  },
+  {
+    title: "Bure Yohanes Primary",
+    sub: "Primary Education",
+    years: "2010 – 2017",
+    description: "Developed strong analytical skills and academic discipline.",
   },
 ];
 
 const experience = [
   {
-    position: "College Projects",
-    place: "Bahirdar University",
-    duration: "2022 – Present",
-    description:
-      "Developed full-stack apps and collaborated with peers on real-world academic projects.",
-  },
-  {
     position: "Full-stack Developer Intern",
     place: "Alyah Software",
     duration: "June 2023 – Sept 2023",
     description:
-      "Worked on MERN projects and cloud deployment solutions in a fast-paced environment.",
+      "Architected MERN stack features and streamlined cloud deployment workflows.",
+    current: false,
   },
   {
     position: "Frontend Developer",
     place: "Eaglelion System Technologies",
     duration: "2021 – 2022",
     description:
-      "Built responsive, user-friendly UIs using React, Tailwind, and Framer Motion.",
-  },
-  {
-    position: "Web Technologies Enthusiast",
-    place: "Personal/Academic",
-    duration: "Ongoing",
-    description:
-      "Exploring AI, web optimization, and emerging technologies in modern web ecosystems.",
+      "Engineered responsive interfaces using React and Tailwind for enterprise-level clients.",
   },
 ];
 
-const stagger = {
-  hidden: {},
-  show: {
-    transition: { staggerChildren: 0.15 },
-  },
-};
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.7 } },
-};
-
-const Timeline = ({ items, isEducation }) => (
-  <motion.ul
-    className="flex flex-col gap-8 relative pl-6"
-    initial="hidden"
-    whileInView="show"
-    viewport={{ once: true, amount: 0.25 }}
-    variants={stagger}
+const Card = ({ item }) => (
+  <motion.div
+    initial={{ opacity: 0, x: 20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    viewport={{ once: true }}
+    className="group relative mb-12 last:mb-0"
   >
-    <span
-      className={`absolute left-2 top-4 bottom-0 w-1 rounded-full bg-gradient-to-b ${
-        isEducation
-          ? "from-blue-600/80 to-transparent"
-          : "from-sky-500/80 to-transparent"
-      }`}
-    ></span>
-    {items.map((item, i) => (
-      <motion.li
-        className="relative flex items-start gap-5 group"
-        variants={fadeInUp}
-        key={i}
-      >
-        <span className="relative z-10 flex items-center justify-center mt-2">
-          {isEducation ? (
-            i === items.length - 1 ? (
-              <FaGraduationCap className="text-blue-400 text-2xl animate-bounce" />
-            ) : (
-              <FaCircle className="text-blue-300 text-base group-hover:text-blue-400 transition-colors" />
-            )
-          ) : i === 0 ? (
-            <FaUserTie className="text-sky-400 text-2xl animate-pulse" />
-          ) : (
-            <FaCircle className="text-sky-300 text-base group-hover:text-sky-400 transition-colors" />
-          )}
-        </span>
+    {/* Minimal Timeline Bullet */}
+    <div className="absolute -left-[41px] top-1.5 h-4 w-4 rounded-full border-2 border-slate-900 bg-white z-10 transition-all duration-500 group-hover:bg-slate-900" />
 
-        <div className="bg-gradient-to-r from-black/70 via-blue-900/30 to-sky-900/30 border border-blue-400/20 hover:border-blue-400/60 rounded-2xl p-5 shadow-lg w-full transition-all duration-300 group-hover:scale-[1.03] backdrop-blur-lg">
-          <h3
-            className={`${
-              isEducation ? "text-blue-300" : "text-sky-300"
-            } text-lg sm:text-xl md:text-2xl font-semibold mb-1 group-hover:text-blue-400 transition-colors`}
-          >
-            {isEducation ? item.title : item.position}
-          </h3>
-          <span className="block text-sm italic mb-1 text-blue-200">
-            {isEducation ? item.years : item.duration}
+    <div className="relative">
+      <div className="flex flex-wrap items-center justify-between gap-4 mb-3">
+        <h3 className="text-xl font-black uppercase tracking-tight text-slate-900 group-hover:text-slate-500 transition-colors">
+          {item.title || item.position}
+        </h3>
+        {item.current && (
+          <span className="text-[10px] font-black uppercase tracking-widest border border-slate-900 px-3 py-1 text-slate-900">
+            Active
           </span>
-          {!isEducation && (
-            <span className="block text-xs mb-2 text-blue-100 uppercase tracking-wide">
-              {item.place}
-            </span>
-          )}
-          <p className="text-gray-200 text-base leading-relaxed">
-            {item.description}
-          </p>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-1 text-[11px] font-bold uppercase tracking-[0.15em] text-slate-400 mb-4">
+        <div className="flex items-center gap-2">
+          <FaCalendarAlt size={10} className="text-slate-900" />
+          <span>{item.years || item.duration}</span>
         </div>
-      </motion.li>
-    ))}
-  </motion.ul>
+        {(item.place || item.sub) && (
+          <div className="flex items-center gap-2">
+            <FaMapMarkerAlt size={10} className="text-slate-900" />
+            <span>{item.place || item.sub}</span>
+          </div>
+        )}
+      </div>
+
+      <p className="text-slate-500 leading-relaxed font-medium text-sm md:text-base border-l-2 border-slate-50 pl-4 group-hover:border-slate-900 transition-all duration-500">
+        {item.description}
+      </p>
+    </div>
+  </motion.div>
 );
 
 const Resume = () => {
   return (
-    <section className="no-scrollbar min-h-screen relative py-16 px-4 sm:px-8 md:px-12 bg-gradient-to-br from-black via-gray-950 to-blue-950 flex flex-col items-center justify-center w-full overflow-hidden">
-      {/* Background effects */}
-      <div className="pointer-events-none absolute -top-60 -left-60 w-[500px] h-[500px] bg-blue-800/30 blur-3xl rounded-full"></div>
-      <div className="pointer-events-none absolute -bottom-80 -right-80 w-[500px] h-[450px] bg-sky-700/20 blur-3xl rounded-full"></div>
+    <section className="relative w-full bg-white py-32 px-6 font-[Poppins] overflow-hidden">
+      <div className="mx-auto max-w-7xl">
+        {/* Header Section */}
+        <header className="mb-24">
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="mb-4 inline-block text-[11px] font-black uppercase tracking-[0.4em] text-slate-400"
+          >
+            History
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 uppercase leading-[0.9]"
+          >
+            Professional <br />
+            <span className="outline-text">Timeline.</span>
+          </motion.h2>
+        </header>
 
-      <motion.h1
-        initial={{ opacity: 0, y: -30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-center mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-sky-300 tracking-wide drop-shadow-[0_2px_20px_rgba(0,180,255,0.3)]"
-      >
-        Education & Experience
-      </motion.h1>
+        <div className="grid grid-cols-1 gap-20 lg:grid-cols-2">
+          {/* Education Column */}
+          <div className="relative">
+            <div className="mb-12 flex items-center gap-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white">
+                <FaGraduationCap size={18} />
+              </div>
+              <h3 className="text-sm font-black uppercase tracking-[0.3em] text-slate-900">
+                Academic
+              </h3>
+            </div>
 
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.8 }}
-        className="text-gray-300 text-center text-base sm:text-lg md:text-xl max-w-2xl mx-auto mb-14 font-light"
-      >
-        A journey of growth — blending strong education with real-world experience in tech innovation.
-      </motion.p>
-
-      <div className="z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 w-full max-w-6xl">
-        {/* Education */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="flex items-center gap-4 mb-8">
-            <FaGraduationCap className="text-3xl text-blue-400 animate-pulse" />
-            <h2 className="text-2xl md:text-3xl font-bold text-blue-300">
-              Education
-            </h2>
+            <div className="relative border-l border-slate-100 pl-8 ml-5">
+              {education.map((edu, idx) => (
+                <Card key={idx} item={edu} />
+              ))}
+            </div>
           </div>
-          <Timeline items={education} isEducation />
-        </motion.div>
 
-        {/* Experience */}
-        <motion.div
-          initial={{ opacity: 0, x: 50 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.25 }}
-          transition={{ duration: 0.8 }}
-        >
-          <div className="flex items-center gap-4 mb-8">
-            <FaUserTie className="text-3xl text-sky-400 animate-pulse" />
-            <h2 className="text-2xl md:text-3xl font-bold text-sky-300">
-              Experience
-            </h2>
+          {/* Experience Column */}
+          <div className="relative">
+            <div className="mb-12 flex items-center gap-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-900 text-white">
+                <FaUserTie size={16} />
+              </div>
+              <h3 className="text-sm font-black uppercase tracking-[0.3em] text-slate-900">
+                Industrial
+              </h3>
+            </div>
+
+            <div className="relative border-l border-slate-100 pl-8 ml-5">
+              {experience.map((exp, idx) => (
+                <Card key={idx} item={exp} />
+              ))}
+            </div>
           </div>
-          <Timeline items={experience} />
-        </motion.div>
+        </div>
       </div>
 
-      <div className="absolute left-1/2 bottom-2 -translate-x-1/2 w-[180px] h-2 bg-gradient-to-r from-blue-500 via-sky-400 to-blue-600 rounded-full blur-sm opacity-70" />
+      <style jsx>{`
+        .outline-text {
+          -webkit-text-stroke: 1.5px #1e293b;
+          color: transparent;
+        }
+        @media (max-width: 768px) {
+          .outline-text {
+            -webkit-text-stroke: 1px #1e293b;
+          }
+        }
+      `}</style>
     </section>
   );
 };

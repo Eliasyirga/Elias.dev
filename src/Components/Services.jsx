@@ -1,95 +1,144 @@
 import React from "react";
-import { motion } from "framer-motion";
-import { Code2, Database, Cpu, Globe } from "lucide-react";
+import { motion, useMotionValue, useTransform } from "framer-motion";
+import {
+  Code2,
+  Database,
+  Cpu,
+  Globe,
+  ArrowUpRight,
+  Smartphone,
+} from "lucide-react";
 
 const services = [
   {
-    icon: <Code2 size={40} />,
-    title: "MERN Stack Development",
+    icon: <Code2 size={22} />,
+    title: "MERN Stack",
     description:
-      "Building full-stack web applications using MongoDB, Express, React, and Node.js — scalable, responsive, and modern.",
+      "Scalable, high-performance full-stack apps built with MongoDB, Express, React, and Node.js.",
   },
   {
-    icon: <Database size={40} />,
-    title: "Backend & API Design",
+    icon: <Smartphone size={22} />,
+    title: "Mobile Apps",
     description:
-      "Designing efficient RESTful APIs and integrating databases with optimized architecture for speed and reliability.",
+      "Cross-platform Flutter and React solutions for premium mobile experiences.",
   },
   {
-    icon: <Cpu size={40} />,
-    title: "Python Development",
+    icon: <Database size={22} />,
+    title: "Backend Design",
     description:
-      "Creating automation tools, data processing scripts, and intelligent AI-powered solutions using Python.",
+      "Optimized RESTful APIs and robust database architectures designed for speed.",
   },
   {
-    icon: <Globe size={40} />,
-    title: "Web Deployment & Optimization",
+    icon: <Cpu size={22} />,
+    title: "Python & AI",
     description:
-      "Deploying and optimizing web apps on platforms like Vercel and AWS for performance and seamless scalability.",
+      "Automation and intelligent data processing tools powered by modern Python libraries.",
+  },
+  {
+    icon: <Globe size={22} />,
+    title: "Cloud & DevOps",
+    description:
+      "Efficient deployment strategies on AWS and Vercel with a focus on maximum uptime.",
   },
 ];
+
+const ServiceCard = ({ service, index }) => {
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function onMouseMove({ currentTarget, clientX, clientY }) {
+    const { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      onMouseMove={onMouseMove}
+      className="group relative flex flex-col justify-between overflow-hidden rounded-3xl border border-slate-100 bg-white p-8 transition-all hover:border-slate-900 hover:shadow-2xl hover:shadow-slate-200"
+    >
+      {/* Subtle Monochrome Spotlight */}
+      <motion.div
+        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
+        style={{
+          background: useTransform(
+            [mouseX, mouseY],
+            ([x, y]) =>
+              `radial-gradient(300px circle at ${x}px ${y}px, rgba(15, 23, 42, 0.03), transparent 80%)`,
+          ),
+        }}
+      />
+
+      <div className="relative z-10">
+        <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-50 text-slate-900 transition-all duration-500 group-hover:bg-slate-900 group-hover:text-white group-hover:scale-110">
+          {service.icon}
+        </div>
+        <h3 className="mb-3 text-xl font-black uppercase tracking-tight text-slate-900">
+          {service.title}
+        </h3>
+        <p className="text-sm leading-relaxed text-slate-500 font-medium">
+          {service.description}
+        </p>
+      </div>
+
+      <div className="relative z-10 mt-8 flex items-center text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 group-hover:text-slate-900 transition-colors cursor-pointer">
+        View Project Detail
+        <ArrowUpRight
+          size={14}
+          className="ml-2 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+        />
+      </div>
+    </motion.div>
+  );
+};
 
 const Services = () => {
   return (
     <section
       id="services"
-      className="relative min-h-screen w-full flex flex-col items-center justify-center bg-gradient-to-b from-black via-[#0a0f1f] to-[#010409] text-white font-[Poppins] px-6 py-20 overflow-hidden"
+      className="w-full bg-white px-6 py-32 font-[Poppins]"
     >
-      {/* Section Header */}
-      <motion.h2
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        className="text-4xl sm:text-5xl font-extrabold text-center mb-12 bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-400 text-transparent bg-clip-text"
-      >
-        My Services
-      </motion.h2>
-
-      {/* Services Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-6xl z-20 relative">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.2 }}
-            className="group bg-black/30 border border-cyan-500/20 backdrop-blur-md p-6 rounded-3xl shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_60px_rgba(6,182,212,0.5)] hover:-translate-y-2 transition-all duration-300"
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-16">
+          <motion.span
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="mb-4 inline-block text-[11px] font-black uppercase tracking-[0.4em] text-slate-400"
           >
-            <div className="text-blue-400 mb-4 group-hover:text-cyan-400 transition-colors duration-300">
-              {service.icon}
-            </div>
-            <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-            <p className="text-gray-300 text-sm leading-relaxed">
-              {service.description}
-            </p>
-          </motion.div>
-        ))}
+            Capabilities
+          </motion.span>
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            className="text-5xl md:text-7xl font-black tracking-tighter text-slate-900 uppercase"
+          >
+            Technical <br />
+            <span className="outline-text">Expertise.</span>
+          </motion.h2>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((service, index) => (
+            <ServiceCard key={index} service={service} index={index} />
+          ))}
+        </div>
       </div>
 
-      {/* Floating Particles */}
-      {Array.from({ length: 6 }).map((_, i) => (
-        <motion.div
-          key={i}
-          animate={{
-            x: [0, 20 - Math.random() * 40, 0],
-            y: [0, 20 - Math.random() * 40, 0],
-          }}
-          transition={{
-            repeat: Infinity,
-            duration: 6 + Math.random() * 4,
-            delay: i,
-          }}
-          className={`absolute rounded-full`}
-          style={{
-            width: 40 + Math.random() * 40,
-            height: 40 + Math.random() * 40,
-            background: `rgba(6,182,212,${0.1 + Math.random() * 0.2})`,
-            top: `${10 + Math.random() * 80}%`,
-            left: `${10 + Math.random() * 80}%`,
-            filter: "blur(20px)",
-          }}
-        />
-      ))}
+      <style jsx>{`
+        .outline-text {
+          -webkit-text-stroke: 1.5px #1e293b;
+          color: transparent;
+        }
+        @media (max-width: 768px) {
+          .outline-text {
+            -webkit-text-stroke: 1px #1e293b;
+          }
+        }
+      `}</style>
     </section>
   );
 };

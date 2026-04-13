@@ -1,178 +1,191 @@
 import React from "react";
+import { motion } from "framer-motion";
 import {
   HiOutlineMail,
   HiOutlinePhone,
   HiOutlineLocationMarker,
 } from "react-icons/hi";
-import { FaLinkedin, FaGithub, FaTwitter, FaFacebook } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
 
 const FooterContact = () => {
-  return (
-    <footer id="contact" className="relative bg-gradient-to-tl from-black via-gray-900 to-black text-gray-300 font-[Poppins] overflow-hidden py-24">
-      {/* Soft background wave */}
-      <div className="absolute -bottom-32 left-1/2 transform -translate-x-1/2 w-[150%] h-96 bg-blue-900/10 rounded-full filter blur-3xl animate-pulse-slow pointer-events-none"></div>
-      <div className="absolute -top-32 -right-1/4 w-[60%] h-80 bg-purple-800/10 rounded-full filter blur-3xl animate-pulse-slow pointer-events-none"></div>
+  const currentYear = new Date().getFullYear();
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 sm:px-12 space-y-16">
-        {/* Header: Logo + Name + Intro */}
-        <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-6">
-          <div className="flex items-center gap-4">
-            <div className="bg-blue-600/10 p-2 rounded-full shadow-md hover:scale-105 hover:shadow-blue-400 transition-transform duration-500">
-              <img
-                src="/logo.webp"
-                alt="Elias Yirga Logo"
-                className="w-16 h-16 rounded-full object-cover"
-                draggable={false}
+  return (
+    <footer
+      id="contact"
+      className="relative bg-white text-black py-24 md:py-40 px-6 md:px-12 overflow-hidden font-[Poppins]"
+    >
+      <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 md:gap-24 mb-24 md:mb-40">
+          {/* Brand & Identity Column */}
+          <div className="lg:col-span-7 space-y-12">
+            <div>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="flex items-center gap-3 mb-8"
+              >
+                <div className="h-[1px] w-8 bg-black" />
+                <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black/40">
+                  Contact
+                </span>
+              </motion.div>
+
+              <h2 className="text-6xl md:text-9xl font-black tracking-tighter uppercase leading-[0.8] mb-10">
+                Let's <br />
+                <span className="outline-text">Connect.</span>
+              </h2>
+
+              <p className="text-xl md:text-2xl text-black/50 font-medium leading-tight max-w-md">
+                Crafting digital experiences that blend aesthetic elegance with
+                technical precision.
+              </p>
+            </div>
+
+            {/* Social Links Grid */}
+            <div className="flex flex-wrap gap-4">
+              <SocialLink
+                Icon={FaLinkedin}
+                href="https://linkedin.com/in/eliasyirga"
+                label="LinkedIn"
+              />
+              <SocialLink
+                Icon={FaGithub}
+                href="https://github.com/eliasyirga"
+                label="GitHub"
+              />
+              <SocialLink
+                Icon={FaTwitter}
+                href="https://twitter.com/eliasyirga"
+                label="X-Twitter"
               />
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-wide bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent animate-textSlide select-none">
-              Elias Yirga
-            </h2>
           </div>
-          <p className="max-w-md text-gray-400 text-center sm:text-left leading-relaxed">
-            Passionate software developer crafting modern, scalable web
-            applications. Let’s connect and build impactful solutions together!
-          </p>
+
+          {/* Contact Details Grid */}
+          <div className="lg:col-span-5 flex flex-col justify-end">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <ContactCard
+                Icon={HiOutlineMail}
+                label="Message"
+                value="eliasyirga575@gmail.com"
+                href="mailto:eliasyirga575@gmail.com"
+              />
+              <ContactCard
+                Icon={HiOutlinePhone}
+                label="Call"
+                value="+251 946 450 062"
+                href="tel:+251946450062"
+              />
+              <ContactCard
+                Icon={HiOutlineLocationMarker}
+                label="Base"
+                value="Addis Ababa, ET"
+              />
+
+              {/* Status Card */}
+              <motion.div
+                whileHover={{ y: -5 }}
+                className="flex flex-col justify-between p-10 rounded-[2.5rem] bg-black text-white min-h-[200px]"
+              >
+                <div className="flex justify-between items-start">
+                  <div className="w-2 h-2 rounded-full bg-white animate-pulse" />
+                  <span className="text-[9px] font-black uppercase tracking-widest opacity-40">
+                    Status
+                  </span>
+                </div>
+                <p className="text-xl font-bold uppercase tracking-tighter leading-none">
+                  Open for <br /> Collaboration
+                </p>
+              </motion.div>
+            </div>
+          </div>
         </div>
 
-        {/* Contact Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
-          <ContactCard
-            Icon={HiOutlineMail}
-            title="Email"
-            value="eliasyirga575@gmail.com"
-            href="mailto:eliasyirga575@gmail.com"
-            delay="0.1s"
-          />
-          <ContactCard
-            Icon={HiOutlinePhone}
-            title="Phone"
-            value="+251 946450062"
-            href="tel:+251946450062"
-            delay="0.3s"
-          />
-          <ContactCard
-            Icon={HiOutlineLocationMarker}
-            title="Location"
-            value="Addis Ababa, Ethiopia"
-            delay="0.5s"
-          />
-        </div>
+        {/* Bottom Bar */}
+        <div className="pt-12 border-t border-black/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <div className="flex items-center gap-6">
+            <div className="text-xl font-black tracking-tighter">EY.</div>
+            <p className="text-[10px] text-black/30 font-black uppercase tracking-[0.3em]">
+              © {currentYear} — Addis Ababa
+            </p>
+          </div>
 
-        {/* Social Icons */}
-        <div className="flex justify-center sm:justify-start gap-8 mt-6">
-          <SocialLink
-            Icon={FaLinkedin}
-            href="https://linkedin.com/in/eliasyirga"
-            label="LinkedIn"
-          />
-          <SocialLink
-            Icon={FaGithub}
-            href="https://github.com/eliasyirga"
-            label="GitHub"
-          />
-          <SocialLink
-            Icon={FaTwitter}
-            href="https://twitter.com/eliasyirga"
-            label="Twitter"
-          />
-          <SocialLink
-            Icon={FaFacebook}
-            href="https://facebook.com/eliasyirga"
-            label="Facebook"
-          />
+          <div className="flex gap-10 text-[10px] font-black uppercase tracking-[0.3em] text-black/40">
+            <a
+              href="#"
+              className="hover:text-black hover:line-through transition-all"
+            >
+              Privacy
+            </a>
+            <a
+              href="#"
+              className="hover:text-black hover:line-through transition-all"
+            >
+              Terms
+            </a>
+            <p className="hidden md:block">Built with React</p>
+          </div>
         </div>
       </div>
 
-      {/* Footer Bottom */}
-      <div className="border-t border-gray-800 mt-16 pt-6 text-center text-xs sm:text-sm text-gray-500 select-none relative z-10">
-        © {new Date().getFullYear()} Elias Yirga. All rights reserved.
-      </div>
-
-      {/* Animations */}
-      <style>{`
-        @keyframes textSlide {
-          0%, 100% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
+      <style jsx>{`
+        .outline-text {
+          -webkit-text-stroke: 1.5px #000;
+          color: transparent;
         }
-        .animate-textSlide {
-          background-size: 200% 200%;
-          animation: textSlide 6s ease infinite;
-        }
-
-        @keyframes pulseSlow {
-          0%, 100% { opacity: 0.1; }
-          50% { opacity: 0.15; }
-        }
-        .animate-pulse-slow {
-          animation: pulseSlow 6s ease-in-out infinite;
-        }
-
-        @keyframes bounceInUp {
-          0% { opacity: 0; transform: translateY(40px); }
-          60% { opacity: 1; transform: translateY(-8px); }
-          80% { transform: translateY(4px); }
-          100% { transform: translateY(0); }
-        }
-        .animate-bounceInUp {
-          animation: bounceInUp 0.8s ease forwards;
-        }
-
-        .hover-scale-up:hover {
-          transform: scale(1.05);
-          transition: transform 0.3s ease;
-        }
-
-        .subtle-glow {
-          box-shadow: 0 0 6px rgba(59, 130, 246, 0.4);
-          transition: box-shadow 0.3s ease;
-        }
-        .subtle-glow:hover {
-          box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
-        }
-
-        .glass-card {
-          background: rgba(0, 0, 0, 0.65);
-          border: 1px solid rgba(59, 130, 246, 0.4);
-          backdrop-filter: blur(12px);
+        @media (max-width: 768px) {
+          .outline-text {
+            -webkit-text-stroke: 1px #000;
+          }
         }
       `}</style>
     </footer>
   );
 };
 
-const ContactCard = ({ Icon, title, value, href, delay }) => (
-  <div
-    className="flex flex-col items-center sm:items-start space-y-2 rounded-3xl p-6 glass-card shadow-md hover:shadow-blue-500 hover-scale-up animate-bounceInUp"
-    style={{ animationDelay: delay }}
+const ContactCard = ({ Icon, label, value, href }) => (
+  <motion.a
+    href={href}
+    target={href ? "_blank" : undefined}
+    whileHover={href ? { y: -5, backgroundColor: "#000", color: "#fff" } : {}}
+    className={`group flex flex-col justify-between p-10 rounded-[2.5rem] border border-black/5 bg-[#fafafa] transition-all duration-500 ${!href && "cursor-default"}`}
   >
-    <Icon className="w-10 h-10 text-blue-400" />
-    <h4 className="font-semibold text-lg">{title}</h4>
-    {href ? (
-      <a
-        href={href}
-        className="text-gray-300 hover:text-blue-400 text-base break-words text-center sm:text-left"
-      >
+    <div className="mb-8">
+      <Icon
+        size={24}
+        className={
+          href ? "group-hover:text-white transition-colors" : "text-black/20"
+        }
+      />
+    </div>
+    <div>
+      <span className="block text-[9px] font-black uppercase tracking-widest mb-1 opacity-40">
+        {label}
+      </span>
+      <span className="font-bold text-sm tracking-tight truncate block">
         {value}
-      </a>
-    ) : (
-      <p className="text-gray-300 text-base text-center sm:text-left">
-        {value}
-      </p>
-    )}
-  </div>
+      </span>
+    </div>
+  </motion.a>
 );
 
 const SocialLink = ({ Icon, href, label }) => (
-  <a
+  <motion.a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    aria-label={label}
-    className="text-gray-400 hover:text-blue-400 transition-transform duration-300 hover-scale-up subtle-glow"
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
+    className="group flex items-center gap-4 pl-4 pr-8 py-4 rounded-full border border-black/5 bg-white hover:bg-black hover:text-white transition-all duration-500 shadow-sm"
   >
-    <Icon className="w-9 h-9 sm:w-8 sm:h-8" />
-  </a>
+    <div className="h-8 w-8 flex items-center justify-center rounded-full bg-black/5 group-hover:bg-white/10">
+      <Icon size={16} />
+    </div>
+    <span className="text-[10px] font-black uppercase tracking-widest">
+      {label}
+    </span>
+  </motion.a>
 );
 
 export default FooterContact;

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, animate } from "framer-motion";
 import {
   FaJsSquare,
   FaReact,
@@ -8,134 +8,149 @@ import {
   FaDatabase,
   FaPython,
 } from "react-icons/fa";
-import { SiTailwindcss } from "react-icons/si";
+import { SiTailwindcss, SiFlutter, SiNextdotjs } from "react-icons/si";
 
 const skillsData = [
   { name: "JavaScript", level: 90, icon: <FaJsSquare /> },
-  { name: "React", level: 85, icon: <FaReact /> },
+  { name: "React / Next.js", level: 85, icon: <FaReact /> },
+  { name: "Flutter", level: 85, icon: <SiFlutter /> },
   { name: "Node.js", level: 75, icon: <FaNodeJs /> },
   { name: "Tailwind CSS", level: 80, icon: <SiTailwindcss /> },
   { name: "MongoDB", level: 70, icon: <FaDatabase /> },
   { name: "Python", level: 65, icon: <FaPython /> },
 ];
 
-const Skills = () => (
-  <section
-    id="skills"
-    className="w-full px-4 sm:px-8 py-16 bg-gradient-to-br from-black via-gray-900 to-black font-[Poppins]"
-  >
-    <h2 className="text-4xl font-extrabold mb-16 text-center text-transparent bg-gradient-to-r from-blue-400 to-blue-700 bg-clip-text">
-      My Skills
-    </h2>
-
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-      {skillsData.map((skill, idx) => (
-        <SkillItem key={idx} {...skill} />
-      ))}
-    </div>
-  </section>
-);
-
-const SkillItem = ({ name, level, icon }) => {
-  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.4 });
-  const progress = useMotionValue(0);
-
-  const stroke = 4;
-  const radius = 36;
-  const normalizedRadius = radius - stroke * 2;
-  const circumference = normalizedRadius * 2 * Math.PI;
-
-  const strokeDashoffset = useTransform(
-    progress,
-    (value) => circumference - (value / 100) * circumference
-  );
-
-  const percentage = useMotionValue(0);
-  const rounded = useTransform(percentage, (v) => Math.round(v));
+const SkillRow = ({ name, level, icon, index }) => {
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
   const [displayValue, setDisplayValue] = useState(0);
 
   useEffect(() => {
-    const unsubscribe = rounded.onChange((latest) => setDisplayValue(latest));
     if (inView) {
-      animate(progress, level, { duration: 1.7, ease: "easeOut" });
-      animate(percentage, level, { duration: 1.7, ease: "easeOut" });
+      const controls = animate(0, level, {
+        duration: 1.5,
+        delay: index * 0.1,
+        ease: "easeOut",
+        onUpdate: (latest) => setDisplayValue(Math.round(latest)),
+      });
+      return () => controls.stop();
     }
-    return () => unsubscribe();
-  }, [inView, level, progress, percentage, rounded]);
+  }, [inView, level, index]);
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 60 }}
-      animate={inView ? { opacity: 1, y: 0, scale: 1 } : { scale: 0.95 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      whileHover={{
-        scale: 1.07,
-        boxShadow:
-          "0 0 25px 6px rgba(59, 130, 246, 0.7), 0 10px 20px rgba(37, 99, 235, 0.4)",
-      }}
-      className="relative flex flex-col items-center space-y-4 p-6 bg-black/70 backdrop-blur-md rounded-3xl border border-blue-700 shadow-lg cursor-pointer overflow-hidden focus:outline-none focus:ring-4 focus:ring-blue-500"
-      tabIndex={0}
-      aria-label={`${name} skill level ${level} percent`}
+      initial={{ opacity: 0, y: 20 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="group relative border-b border-slate-100 py-5 md:py-8 transition-all duration-500 hover:px-2 md:hover:px-6 overflow-hidden"
     >
-      {/* Glowing radial background behind icon */}
-      <div className="absolute -top-8 -left-8 w-24 h-24 rounded-full bg-gradient-to-br from-blue-600/50 to-blue-400/20 blur-3xl pointer-events-none"></div>
+      <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 md:gap-4">
+        {/* Left Side: Index, Icon, Name */}
+        <div className="flex items-center gap-4 md:gap-8">
+          <span className="text-[10px] md:text-xs font-black text-slate-300 group-hover:text-blue-600 transition-colors duration-500">
+            {index + 1 < 10 ? `0${index + 1}` : index + 1}
+          </span>
+          <div className="text-xl md:text-4xl text-slate-400 group-hover:text-slate-900 group-hover:rotate-12 transition-all duration-500">
+            {icon}
+          </div>
+          <h3 className="text-lg md:text-4xl font-black uppercase tracking-tighter text-slate-900 leading-none">
+            {name}
+          </h3>
+        </div>
 
-      <div className="relative z-10 w-20 h-20 text-blue-500 drop-shadow-lg">
-        {React.cloneElement(icon, { className: "w-full h-full" })}
-      </div>
-
-      <div className="relative z-10 w-20 h-20">
-        <svg width={radius * 2} height={radius * 2} className="rotate-[-90deg]">
-          <circle
-            stroke="#111827"
-            fill="transparent"
-            strokeWidth={stroke}
-            r={normalizedRadius}
-            cx={radius}
-            cy={radius}
-          />
-          <motion.circle
-            stroke="url(#gradient)"
-            fill="transparent"
-            strokeWidth={stroke}
-            strokeDasharray={`${circumference} ${circumference}`}
-            style={{ strokeDashoffset }}
-            strokeLinecap="round"
-            r={normalizedRadius}
-            cx={radius}
-            cy={radius}
-            className="filter drop-shadow-[0_0_8px_rgba(59,130,246,0.9)]"
-          />
-
-          <text
-            x={radius}
-            y={radius}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            transform={`rotate(90 ${radius} ${radius})`} // <-- This keeps text straight
-            className="fill-blue-400 font-extrabold text-base sm:text-lg"
-            style={{
-              userSelect: "none",
-              filter: "drop-shadow(0 0 3px rgba(59,130,246,0.9))",
-            }}
-          >
+        {/* Right Side: Progress and Value */}
+        <div className="flex items-center justify-between sm:justify-end gap-4 md:gap-6 w-full sm:w-auto">
+          {/* Progress Bar */}
+          <div className="flex-grow w-full sm:w-32 md:w-48 h-[2px] bg-slate-100 overflow-hidden relative">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={inView ? { width: `${level}%` } : {}}
+              transition={{
+                duration: 1.5,
+                delay: index * 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="absolute h-full bg-blue-600 group-hover:bg-slate-900 transition-colors duration-500"
+            />
+          </div>
+          <span className="text-sm md:text-xl font-black tabular-nums text-slate-900 opacity-60 group-hover:opacity-100 transition-opacity">
             {displayValue}%
-          </text>
-
-          <defs>
-            <linearGradient id="gradient" x1="1" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#3b82f6" />
-              <stop offset="100%" stopColor="#2563eb" />
-            </linearGradient>
-          </defs>
-        </svg>
+          </span>
+        </div>
       </div>
 
-      <h3 className="relative z-10 text-lg font-extrabold tracking-wider bg-gradient-to-r from-blue-400 to-blue-700 bg-clip-text text-transparent select-none">
-        {name}
-      </h3>
+      {/* Subtle Hover Reveal Effect - Disabled on small touch devices for better scroll experience */}
+      <div className="absolute inset-0 -z-0 translate-y-full bg-slate-50 transition-transform duration-500 ease-out md:group-hover:translate-y-0" />
     </motion.div>
+  );
+};
+
+const Skills = () => {
+  return (
+    <section
+      id="skills"
+      className="relative min-h-screen w-full bg-white py-12 md:py-32 px-5 md:px-10 font-[Poppins]"
+    >
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col gap-10 lg:flex-row lg:gap-24">
+          {/* Left Column */}
+          <div className="lg:w-2/5">
+            <div className="lg:sticky lg:top-32">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="space-y-4 md:space-y-6"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="h-[1px] w-6 md:w-8 bg-blue-600" />
+                  <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.5em] text-blue-600">
+                    Capabilities
+                  </span>
+                </div>
+
+                <h2 className="text-4xl sm:text-5xl md:text-8xl font-black leading-[0.9] md:leading-[0.85] tracking-tighter text-slate-900 uppercase">
+                  Tech <br />
+                  <span className="outline-text">Stack.</span>
+                </h2>
+
+                <p className="max-w-xs text-slate-500 text-xs md:text-base font-medium leading-relaxed">
+                  Focusing on modern MERN development, Flutter ecosystems, and
+                  high-performance system architectures.
+                </p>
+
+                <div className="pt-4 hidden md:block">
+                  <div className="text-[10px] font-bold uppercase tracking-widest text-slate-300">
+                    Updated 2026 / Build 04.2
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Right Column */}
+          <div className="lg:flex-1">
+            <div className="border-t border-slate-100">
+              {skillsData.map((skill, idx) => (
+                <SkillRow key={idx} {...skill} index={idx} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <style jsx>{`
+        .outline-text {
+          -webkit-text-stroke: 1px #0f172a;
+          color: transparent;
+        }
+        @media (min-width: 768px) {
+          .outline-text {
+            -webkit-text-stroke: 1.5px #0f172a;
+          }
+        }
+      `}</style>
+    </section>
   );
 };
 
