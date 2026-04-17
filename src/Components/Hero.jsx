@@ -71,15 +71,14 @@ const Hero = () => {
           opacity: { duration: 1, delay: 0.4 },
           y: { duration: 5, repeat: Infinity, ease: "easeInOut" },
         }}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 z-50 w-[160px] sm:w-[200px] md:w-[250px] lg:w-[310px]"
+        className="absolute bottom-0 left-1/2 -translate-x-1/2 z-40 w-[280px] sm:w-[320px] md:w-[250px] lg:w-[310px]"
       >
         <img
           src="/vv.webp"
           alt="Elias Yirga"
           className="w-full h-auto grayscale hover:grayscale-0 transition-all duration-1000 pointer-events-none drop-shadow-2xl"
         />
-        {/* Mask to blend bottom into white */}
-        <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-white via-white/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-white via-white/40 to-transparent" />
       </motion.div>
 
       {/* 4. Footer Content / Buttons */}
@@ -117,7 +116,7 @@ const Hero = () => {
         </p>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .outline-text {
           -webkit-text-stroke: 1.5px #e2e8f0;
           color: transparent;
