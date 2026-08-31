@@ -4,33 +4,52 @@ import { ExternalLink, Terminal, Code2, Globe } from "lucide-react";
 
 const projects = [
   {
-    title: "Grove Link Consult",
-    category: "Corporate / Vite",
+    title: "BahirLink",
+    category: "Emergency / Full Stack",
     description:
-      "High-performance business platform optimized for core web vitals and global SEO dominance.",
-    link: "https://www.grovelinkconsult.com/",
-    image: "/Capture88.PNG",
-    tags: ["React", "Vite", "SEO"],
+      "Unified emergency response and public service coordination platform connecting citizens, responders, and agencies.",
+    link: "https://bahirdarlinkweb.vercel.app/",
+    image: "/bahirlink.PNG",
+    tags: ["Flutter", "Node.js", "PostgreSQL"],
     span: "md:col-span-2",
-  },
-  {
+  }, {
     title: "Jobify",
     category: "Full Stack / MERN",
     description:
-      "Enterprise-grade job portal with complex auth and real-time tracking.",
+      "Enterprise-grade job portal with complex authentication, job discovery, and real-time tracking.",
     link: "https://jobfiy-frontend.vercel.app/",
     image: "/Capture77.PNG",
     tags: ["MongoDB", "Express", "Node"],
     span: "md:col-span-1",
   },
   {
+    title: "Grove Link Consult",
+    category: "Corporate / Vite",
+    description:
+      "High-performance business platform optimized for core web vitals and global SEO dominance.",
+    link: "https://www.grovelinkconsultplc.com/",
+    image: "/Capture88.PNG",
+    tags: ["React", "Vite", "SEO"],
+    span: "md:col-span-2",
+  },
+
+  {
     title: "ChillMovies",
     category: "Media / API",
     description:
-      "Cinema discovery engine utilizing advanced TMDB API integrations.",
+      "Cinema discovery engine utilizing advanced TMDB API integrations for browsing and discovering movies.",
     link: "https://chill-movies.vercel.app/",
     image: "/Capture6.PNG",
     tags: ["React", "Framer", "API"],
+    span: "md:col-span-1",
+  }, {
+    title: "Vintage Marketplace",
+    category: "Marketplace / Full Stack",
+    description:
+      "Secure used-goods marketplace connecting buyers and sellers with listings, authentication, messaging, and trust features.",
+    link: "https://vintage-marketplace-tau.vercel.app/browse",
+    image: "/vintage-marketplace.PNG",
+    tags: ["React", "Node.js", "PostgreSQL"],
     span: "md:col-span-1",
   },
   {
@@ -63,6 +82,8 @@ const projects = [
     tags: ["Animations", "Corporate"],
     span: "md:col-span-1",
   },
+
+
 ];
 
 const ProjectCard = ({ project, index }) => {
@@ -91,19 +112,22 @@ const ProjectCard = ({ project, index }) => {
           alt={project.title}
           className="w-full h-full object-cover grayscale-[0.3] md:grayscale-[0.5] group-hover:grayscale-0 transition-all duration-700"
         />
+
         <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/90 md:to-white/80" />
 
-        {/* Link Overlay - More accessible on mobile via card tap or icon */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-          <a
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden md:flex items-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-full font-bold uppercase text-[10px] tracking-widest hover:scale-105 transition-transform"
-          >
-            Explore <ExternalLink size={14} />
-          </a>
-        </div>
+        {/* Desktop Link Overlay */}
+        {project.link !== "#" && (
+          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex items-center gap-2 bg-slate-900 text-white px-8 py-4 rounded-full font-bold uppercase text-[10px] tracking-widest hover:scale-105 transition-transform"
+            >
+              Explore <ExternalLink size={14} />
+            </a>
+          </div>
+        )}
       </div>
 
       {/* Content Section */}
@@ -113,17 +137,28 @@ const ProjectCard = ({ project, index }) => {
             <p className="text-[9px] md:text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-1">
               {project.category}
             </p>
+
             <h3 className="text-xl md:text-3xl font-black text-slate-900 uppercase tracking-tighter leading-tight">
               {project.title}
             </h3>
           </div>
-          <a
-            href={project.link}
-            target="_blank"
-            className="md:hidden p-2 bg-slate-100 rounded-full"
-          >
-            <ExternalLink size={16} className="text-slate-900" />
-          </a>
+
+          {project.link !== "#" ? (
+            <a
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="md:hidden p-2 bg-slate-100 rounded-full"
+            >
+              <ExternalLink size={16} className="text-slate-900" />
+            </a>
+          ) : (
+            <Terminal
+              size={20}
+              className="hidden md:block text-slate-200"
+            />
+          )}
+
           <Terminal size={20} className="hidden md:block text-slate-200" />
         </div>
 
@@ -143,6 +178,7 @@ const ProjectCard = ({ project, index }) => {
               </span>
             ))}
           </div>
+
           <Code2
             size={16}
             className="text-slate-300 group-hover:text-slate-900 transition-colors"
@@ -165,19 +201,24 @@ const Projects = () => {
           <div className="space-y-2 md:space-y-4">
             <div className="flex items-center gap-2">
               <Globe size={14} className="text-blue-600" />
+
               <span className="text-[9px] md:text-[10px] font-black uppercase tracking-[0.4em] text-slate-400">
                 Deployment Registry
               </span>
             </div>
+
             <h2 className="text-5xl md:text-9xl font-black text-slate-900 leading-[0.8] tracking-tighter uppercase">
               Selected <br className="hidden md:block" />
-              <span className="text-transparent border-text">Works.</span>
+              <span className="text-transparent border-text">
+                Works.
+              </span>
             </h2>
           </div>
+
           <div className="max-w-xs md:text-right">
             <p className="text-slate-400 text-[10px] font-bold uppercase tracking-widest leading-loose border-l-2 md:border-l-0 md:border-r-2 border-blue-600/20 pl-4 md:pl-0 md:pr-4">
-              06 Production Releases <br className="hidden md:block" />
-              MERN Stack Architecture <br className="hidden md:block" />
+              08 Production Releases <br className="hidden md:block" />
+              Full-Stack Architecture <br className="hidden md:block" />
               High Performance UI/UX
             </p>
           </div>
@@ -186,7 +227,11 @@ const Projects = () => {
         {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
           {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
+            <ProjectCard
+              key={project.title}
+              project={project}
+              index={index}
+            />
           ))}
         </div>
       </div>
@@ -195,6 +240,7 @@ const Projects = () => {
         .border-text {
           -webkit-text-stroke: 1.5px #0f172a;
         }
+
         @media (min-width: 768px) {
           .border-text {
             -webkit-text-stroke: 2.5px #0f172a;

@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Maximize2 } from "lucide-react";
 
 const certificates = [
-  { id: 1, src: "/pic1.jpg", title: "Full Stack Development" },
-  { id: 2, src: "/pic2.jpg", title: "Advanced React Patterns" },
-  { id: 3, src: "/55.png", title: "Python for Engineering" },
-  { id: 4, src: "/pic3.jpg", title: "Cloud Architecture" },
-  { id: 5, src: "/pic4.jpg", title: "Machine Learning" },
+  { id: 6, src: "/Image (5).jpg.jpeg", title: "Professional Certification" },
+  { id: 1, src: "/pic1.jpg", title: "Basic Web Developemnt" },
+  { id: 2, src: "/pic2.jpg", title: "React Course" },
+  { id: 3, src: "/55.png", title: "Cursor AI Hackaton" },
+  { id: 4, src: "/pic3.jpg", title: "Python Programming" },
+  { id: 5, src: "/pic4.jpg", title: "Version Control" },
+
 ];
 
 const ImageGallery = () => {

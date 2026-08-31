@@ -26,11 +26,10 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 font-[Poppins] ${
-        scrolled
+      className={`fixed top-0 left-0 w-full z-[100] transition-all duration-700 font-[Poppins] ${scrolled
           ? "bg-white/90 backdrop-blur-2xl py-4 border-b border-black/5 shadow-sm"
           : "bg-transparent py-10"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
         {/* Stark Monochrome Logo */}
