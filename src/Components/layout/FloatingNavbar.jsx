@@ -85,9 +85,13 @@ export const FloatingNavbar = () => {
             onClick={(e) => scrollToSection(e, "#hero")}
             className="group flex items-center gap-2.5 focus:outline-none shrink-0"
           >
-            <div className="relative flex items-center justify-center w-8 h-8 rounded-xl bg-gradient-to-tr from-cyan-500/20 via-zinc-800 to-indigo-500/20 border border-zinc-300 dark:border-zinc-700/80 text-zinc-900 dark:text-zinc-100 font-mono text-xs font-black shadow-inner group-hover:border-cyan-400 dark:group-hover:border-cyan-400 transition-colors">
-              <span className="bg-gradient-to-r from-cyan-400 to-emerald-400 bg-clip-text text-transparent font-black">EY</span>
-              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-emerald-500 animate-pulse ring-2 ring-zinc-900"></span>
+            <div className="relative flex items-center justify-center w-8 h-8 rounded-xl overflow-visible border border-zinc-300/80 dark:border-zinc-700/80 p-0.5 bg-gradient-to-tr from-cyan-500/20 via-zinc-800/10 to-indigo-500/20 group-hover:border-cyan-400 dark:group-hover:border-cyan-400 transition-colors shadow-sm">
+              <img 
+                src="/vv.webp" 
+                alt="Elias Yirga" 
+                className="w-full h-full object-cover rounded-[10px]" 
+              />
+              <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse ring-2 ring-white dark:ring-zinc-900"></span>
             </div>
             <div className="flex flex-col font-mono text-xs leading-none">
               <div className="flex items-center gap-1 font-bold text-zinc-900 dark:text-zinc-100 tracking-tight group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">

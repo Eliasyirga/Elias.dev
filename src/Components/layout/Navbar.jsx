@@ -57,9 +57,12 @@ export const Navbar = ({ onOpenCommandPalette }) => {
         <div className="flex items-center gap-3">
           <Link
             to="/"
-            className="flex items-center gap-2 text-sm sm:text-base font-bold tracking-tight text-white uppercase hover:text-cyan-400 transition-colors"
+            className="flex items-center gap-2.5 text-sm sm:text-base font-bold tracking-tight text-white uppercase hover:text-cyan-400 transition-colors"
           >
-            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <div className="relative w-7 h-7 rounded-lg overflow-hidden border border-cyan-500/40 shrink-0">
+              <img src="/vv.webp" alt="Elias Yirga" className="w-full h-full object-cover" />
+              <span className="absolute -top-0.5 -right-0.5 w-2 h-2 rounded-full bg-cyan-400 animate-pulse ring-1 ring-zinc-900" />
+            </div>
             <span>ELIAS YIRGA</span>
           </Link>
           <span className="hidden lg:inline-block font-mono text-[11px] text-zinc-500 border-l border-zinc-800 pl-3">
