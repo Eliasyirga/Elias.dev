@@ -246,7 +246,7 @@ export const ContactSection = () => {
 
                 <button
                   type="submit"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-zinc-900 to-zinc-800 hover:from-black hover:to-zinc-900 text-white dark:from-zinc-100 dark:to-zinc-200 dark:hover:from-white dark:hover:to-zinc-100 dark:text-zinc-950 font-bold font-mono transition-all shadow-md active:scale-95"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 font-bold font-mono transition-all shadow-md active:scale-95"
                 >
                   <Send className="w-3.5 h-3.5 text-cyan-400 dark:text-cyan-600" />
                   <span>TRANSMIT_INQUIRY</span>

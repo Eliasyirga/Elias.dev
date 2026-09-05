@@ -85,7 +85,7 @@ export const FloatingNavbar = () => {
             onClick={(e) => scrollToSection(e, "#hero")}
             className="group flex items-center gap-2.5 focus:outline-none shrink-0"
           >
-            <div className="relative flex items-center justify-center w-8 h-8 rounded-xl overflow-visible border border-zinc-300/80 dark:border-zinc-700/80 p-0.5 bg-gradient-to-tr from-cyan-500/20 via-zinc-800/10 to-indigo-500/20 group-hover:border-cyan-400 dark:group-hover:border-cyan-400 transition-colors shadow-sm">
+            <div className="relative flex items-center justify-center w-8 h-8 rounded-xl overflow-visible border border-zinc-300/80 dark:border-zinc-700/80 p-0.5 bg-zinc-100 dark:bg-zinc-800 group-hover:border-cyan-400 dark:group-hover:border-cyan-400 transition-colors shadow-sm">
               <img 
                 src="/vv.webp" 
                 alt="Elias Yirga" 
@@ -151,7 +151,7 @@ export const FloatingNavbar = () => {
               href="/Elias_Yirga_CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-zinc-900 to-zinc-800 hover:from-black hover:to-zinc-900 text-white dark:from-zinc-100 dark:to-zinc-200 dark:hover:from-white dark:hover:to-zinc-100 dark:text-zinc-950 text-xs font-mono font-semibold transition-all shadow-sm hover:shadow-md active:scale-95"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 text-xs font-mono font-semibold transition-all shadow-sm hover:shadow-md active:scale-95"
             >
               <FileDown className="w-3.5 h-3.5 text-cyan-400 dark:text-cyan-600" />
               <span>CV / RESUME</span>

@@ -331,13 +331,8 @@ export const CommandCenterWorkbench = () => {
   return (
     <div className="min-h-screen flex flex-col bg-[#f8fafc] dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 font-sans selection:bg-cyan-500 selection:text-white dark:selection:bg-cyan-400 dark:selection:text-zinc-950 relative overflow-x-hidden">
       
-      {/* Dynamic Glowing Ambient Aura Lights */}
-      <div className="fixed top-0 left-1/4 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-[120px] pointer-events-none -z-10 animate-pulse" />
-      <div className="fixed bottom-10 right-1/4 w-96 h-96 bg-emerald-500/10 dark:bg-emerald-500/15 rounded-full blur-[120px] pointer-events-none -z-10" />
-      <div className="fixed top-1/2 right-10 w-80 h-80 bg-indigo-500/10 dark:bg-indigo-500/10 rounded-full blur-[100px] pointer-events-none -z-10" />
-
       {/* 1. TOP SYSTEM BAR */}
-      <header className="sticky top-0 z-40 h-14 border-b border-zinc-200/90 dark:border-white/10 bg-white/85 dark:bg-[#0c0c10]/90 backdrop-blur-xl flex items-center justify-between px-3 sm:px-6 font-mono text-xs shadow-sm">
+      <header className="sticky top-0 z-40 h-14 border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-[#0c0c10] flex items-center justify-between px-3 sm:px-6 font-mono text-xs shadow-sm">
         {/* Left: Branding & Mobile Menu Trigger */}
         <div className="flex items-center gap-3">
           <button
@@ -349,13 +344,13 @@ export const CommandCenterWorkbench = () => {
           </button>
 
           <div className="flex items-center gap-2.5">
-            <div className="relative flex items-center justify-center w-7 h-7 rounded-lg overflow-hidden border border-cyan-500/30 dark:border-cyan-400/30 shadow-sm ring-1 ring-cyan-500/20">
+            <div className="relative flex items-center justify-center w-7 h-7 rounded-lg overflow-hidden border border-zinc-300 dark:border-zinc-700 shadow-sm">
               <img src="/vv.webp" alt="Elias Yirga" className="w-full h-full object-cover" />
-              <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-emerald-500 ring-1 ring-white dark:ring-zinc-900 animate-pulse" />
+              <span className="absolute top-0 right-0 w-2 h-2 rounded-full bg-emerald-500 ring-1 ring-white dark:ring-zinc-900" />
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-1.5 font-bold text-zinc-900 dark:text-zinc-100 leading-none">
-                <span className="bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-600 dark:from-white dark:via-zinc-200 dark:to-zinc-400 bg-clip-text text-transparent">ELIAS.DEV</span>
+                <span>ELIAS.DEV</span>
                 <span className="text-[10px] text-cyan-600 dark:text-cyan-400 font-semibold hidden sm:inline">:: WORKBENCH_OS</span>
               </div>
               <span className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold leading-none mt-0.5">
@@ -366,7 +361,7 @@ export const CommandCenterWorkbench = () => {
         </div>
 
         {/* Center: Live Telemetry Ticker (Hidden on Mobile) */}
-        <div className="hidden md:flex items-center gap-4 text-[11px] text-zinc-500 bg-zinc-100/80 dark:bg-zinc-900/80 px-3.5 py-1 rounded-full border border-zinc-200 dark:border-white/5 shadow-inner">
+        <div className="hidden md:flex items-center gap-4 text-[11px] text-zinc-500 bg-zinc-100 dark:bg-zinc-900 px-3.5 py-1 rounded-full border border-zinc-200 dark:border-white/5">
           <div className="flex items-center gap-1.5 text-zinc-700 dark:text-zinc-300">
             <Clock className="w-3.5 h-3.5 text-cyan-500" />
             <span>{currentTime || "00:00:00 UTC+3"}</span>
@@ -397,7 +392,7 @@ export const CommandCenterWorkbench = () => {
             href="/Elias_Yirga_CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 px-3 py-1 rounded-lg bg-gradient-to-r from-zinc-900 to-zinc-800 hover:from-black hover:to-zinc-900 text-white dark:from-zinc-100 dark:to-zinc-200 dark:hover:from-white dark:hover:to-zinc-100 dark:text-zinc-950 font-bold text-[11px] shadow-sm hover:scale-102 active:scale-98 transition-all"
+            className="flex items-center gap-1 px-3 py-1 rounded-lg bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 font-bold text-[11px] shadow-sm hover:scale-102 active:scale-98 transition-all"
           >
             <FileDown className="w-3 h-3 text-cyan-400 dark:text-cyan-600" />
             <span>1-CLICK CV</span>
@@ -542,18 +537,18 @@ export const CommandCenterWorkbench = () => {
           {activeTab === "overview" && (
             <div className="space-y-8 animate-in fade-in duration-200">
               
-              {/* Executive Lead Card with Glowing Ambient Ring */}
-              <div className="tech-card rounded-3xl p-6 sm:p-9 border-zinc-300/80 dark:border-white/10 space-y-6 shadow-2xl relative overflow-hidden bg-gradient-to-br from-white/90 via-white/70 to-zinc-50/50 dark:from-[#111116]/90 dark:via-[#0e0e13]/80 dark:to-[#09090c]/90">
+              {/* Executive Lead Card with Solid Minimalist Styling */}
+              <div className="tech-card rounded-3xl p-6 sm:p-9 border-zinc-300 dark:border-white/10 space-y-6 shadow-xl relative overflow-hidden bg-white dark:bg-[#121217]">
                 <div className="space-y-3.5 relative z-10">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20 font-mono text-xs font-semibold shadow-sm">
-                    <Sparkles className="w-3.5 h-3.5" />
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 dark:bg-zinc-800 text-cyan-600 dark:text-cyan-400 border border-zinc-200 dark:border-zinc-700 font-mono text-xs font-semibold shadow-sm">
+                    <Sparkles className="w-3.5 h-3.5 text-cyan-500" />
                     <span>COMMAND_CENTER // ARCHITECTURAL WORKBENCH</span>
                   </div>
 
                   <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-zinc-900 dark:text-white tracking-tight leading-[1.08] font-sans">
                     Elias Yirga
                     <br />
-                    <span className="bg-gradient-to-r from-cyan-600 via-emerald-600 to-indigo-600 dark:from-cyan-400 dark:via-teal-300 dark:to-indigo-400 bg-clip-text text-transparent font-extrabold">
+                    <span className="text-zinc-700 dark:text-zinc-300 font-extrabold">
                       Distributed Systems & Full-Stack Architect
                     </span>
                   </h1>
@@ -567,7 +562,7 @@ export const CommandCenterWorkbench = () => {
                 <div className="flex flex-wrap items-center gap-3 pt-2 font-mono text-xs">
                   <button
                     onClick={() => setActiveTab("projects")}
-                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-zinc-900 to-zinc-800 hover:from-black hover:to-zinc-900 text-white dark:from-zinc-100 dark:to-zinc-200 dark:hover:from-white dark:hover:to-zinc-100 dark:text-zinc-950 font-bold shadow-lg hover:shadow-xl hover:scale-102 active:scale-98 transition-all"
+                    className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 font-bold shadow-md hover:scale-102 active:scale-98 transition-all"
                   >
                     <FileCode className="w-4 h-4 text-cyan-400 dark:text-cyan-600" />
                     <span>EXPLORE_8_RFCS</span>
@@ -1306,7 +1301,7 @@ export const CommandCenterWorkbench = () => {
 
                       <button
                         type="submit"
-                        className="px-6 py-3 rounded-xl bg-gradient-to-r from-zinc-900 to-zinc-800 hover:from-black hover:to-zinc-900 text-white dark:from-zinc-100 dark:to-zinc-200 dark:hover:from-white dark:hover:to-zinc-100 dark:text-zinc-950 font-bold shadow-md hover:scale-102 transition-transform"
+                        className="px-6 py-3 rounded-xl bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 font-bold shadow-md hover:scale-102 transition-transform"
                       >
                         DISPATCH_TRANSMISSION
                       </button>

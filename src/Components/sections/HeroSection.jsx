@@ -93,7 +93,7 @@ export const HeroSection = ({ onSelectProject }) => {
       <div className="space-y-10">
         
         {/* Recruiter Fast-Track Executive Snapshot Banner */}
-        <div className="tech-card rounded-2xl p-4 sm:p-5 border-zinc-200/90 dark:border-white/10 bg-gradient-to-r from-cyan-500/5 via-emerald-500/5 to-transparent relative overflow-hidden">
+        <div className="tech-card rounded-2xl p-4 sm:p-5 border-zinc-200/90 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/60 relative overflow-hidden">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <span className="relative flex h-3 w-3">
@@ -172,7 +172,7 @@ export const HeroSection = ({ onSelectProject }) => {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-zinc-900 dark:text-zinc-50 tracking-tight leading-[1.06] font-sans">
                 Elias Yirga.
                 <br />
-                <span className="bg-gradient-to-r from-zinc-700 via-zinc-900 to-zinc-600 dark:from-zinc-200 dark:via-zinc-400 dark:to-zinc-500 bg-clip-text text-transparent font-medium">
+                <span className="text-zinc-700 dark:text-zinc-300 font-medium">
                   Full-stack software & distributed systems engineer.
                 </span>
               </h1>
@@ -186,7 +186,7 @@ export const HeroSection = ({ onSelectProject }) => {
             <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 pt-2">
               <a
                 href="#projects"
-                className="inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-gradient-to-r from-zinc-900 to-zinc-800 hover:from-black hover:to-zinc-900 text-white dark:from-zinc-100 dark:to-zinc-200 dark:hover:from-white dark:hover:to-zinc-100 dark:text-zinc-950 font-mono text-xs font-bold transition-all shadow-lg hover:shadow-xl hover:scale-102 active:scale-98 text-center"
+                className="inline-flex items-center justify-center gap-2.5 px-5 py-3.5 rounded-xl bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 font-mono text-xs font-bold transition-all shadow-md hover:scale-102 active:scale-98 text-center"
               >
                 <span>EXPLORE_PROJECT_RFCS</span>
                 <ArrowRight className="w-4 h-4 text-cyan-400 dark:text-cyan-600" />
