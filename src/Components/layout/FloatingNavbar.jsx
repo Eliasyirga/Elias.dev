@@ -99,7 +99,7 @@ export const FloatingNavbar = () => {
                 <span className="text-[10px] px-1.5 py-0.2 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20 font-sans font-semibold">HIRING</span>
               </div>
               <span className="text-[10px] text-zinc-400 dark:text-zinc-500 hidden sm:inline">
-                systems_architect
+                computer_engineer
               </span>
             </div>
           </a>

@@ -30,7 +30,7 @@ export const HeroSection = () => {
             <span className="relative flex items-center gap-2 px-3 py-1.5 rounded-md bg-cyan-500/15 border border-cyan-400 text-cyan-300 backdrop-blur-md shadow-[0_0_15px_rgba(0,240,255,0.25)]">
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-ping absolute left-3" />
               <span className="w-2 h-2 rounded-full bg-cyan-400" />
-              <span className="font-bold tracking-wider ml-1">[SYSTEMS &amp; FULL-STACK ARCHITECT]</span>
+              <span className="font-bold tracking-wider ml-1">[COMPUTER ENGINEER &amp; FULL-STACK]</span>
             </span>
           </div>
 
@@ -41,7 +41,7 @@ export const HeroSection = () => {
 
           {/* Direct Technical Copy */}
           <p className="text-sm sm:text-base text-zinc-300 font-normal leading-relaxed max-w-lg">
-            I am <strong className="text-white font-bold underline decoration-cyan-400 underline-offset-4">Elias Yirga</strong>, a computer engineering graduate and systems architect. I build sub-100ms distributed backend pipelines, PostGIS spatial dispatch networks, and high-performance React frontend architectures with strict type contracts.
+            I am <strong className="text-white font-bold underline decoration-cyan-400 underline-offset-4">Elias Yirga</strong>, a computer engineer and full-stack developer. I build sub-100ms backend pipelines, PostGIS spatial dispatch networks, and high-performance React frontend architectures with strict type contracts.
           </p>
 
           {/* Action CTAs */}

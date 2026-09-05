@@ -301,7 +301,7 @@ export const rfc008 = {
   headline: "High-density portfolio and CAD visualizer for architectural engineering firms.",
   status: "PRODUCTION",
   version: "v1.1.0",
-  lead: "Elias Yirga (Frontend Systems Architect)",
+  lead: "Elias Yirga (Frontend & Computer Engineer)",
   date: "2024-Q1",
   domain: "Creative Technology & CAD Systems",
   summary:

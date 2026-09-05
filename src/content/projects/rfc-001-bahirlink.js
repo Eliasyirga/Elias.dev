@@ -5,7 +5,7 @@ export const rfc001 = {
   headline: "Distributed emergency coordination engine with PostGIS sub-100ms dispatching.",
   status: "PRODUCTION",
   version: "v2.4.0",
-  lead: "Elias Yirga (Lead Systems Architect)",
+  lead: "Elias Yirga (Lead Computer Engineer)",
   date: "2025-Q4",
   domain: "Distributed Systems & Spatial Indexing",
   summary:

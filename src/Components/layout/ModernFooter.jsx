@@ -28,10 +28,10 @@ export const ModernFooter = () => {
               </div>
               <span className="font-bold text-zinc-900 dark:text-zinc-100">ELIAS_YIRGA</span>
               <span className="text-zinc-400 dark:text-zinc-600">//</span>
-              <span className="text-cyan-600 dark:text-cyan-400 font-semibold">SYSTEMS_ENGINEER</span>
+              <span className="text-cyan-600 dark:text-cyan-400 font-semibold">COMPUTER_ENGINEER</span>
             </div>
             <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 max-w-md leading-relaxed font-sans">
-              Distributed architectures, real-time spatial dispatch pipelines, and high-performance full-stack web platforms with transactional consistency.
+              Computer engineering graduate building real-time spatial dispatch pipelines, distributed services, and high-performance web platforms with strict relational integrity.
             </p>
             <div className="flex items-center gap-2 font-mono text-[11px] text-zinc-500">
               <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>

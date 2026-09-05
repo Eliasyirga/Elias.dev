@@ -261,7 +261,7 @@ export const CommandCenterWorkbench = () => {
       case "whoami":
         newHistory.push({
           type: "output",
-          text: "Elias Yirga // B.Sc. Computer Engineering Graduate (Bahir Dar University)\nSpecialization: Distributed Systems, Low-Latency Spatial Backends, Transactional ACID & Modern React Web.",
+          text: "Elias Yirga // B.Sc. Computer Engineering Graduate (Bahir Dar University)\nSpecialization: Full-Stack Computer Engineering, Low-Latency Spatial Backends & Modern Web Systems.",
         });
         break;
       case "projects":
@@ -517,7 +517,7 @@ export const CommandCenterWorkbench = () => {
                 <span className="text-[10px] px-2 py-0.5 rounded bg-zinc-200 dark:bg-zinc-800 font-mono font-semibold">4+ YRS</span>
               </div>
               <div className="text-[11px] text-zinc-500">B.Sc. Computer Engineering</div>
-              <div className="text-[10px] text-cyan-600 dark:text-cyan-400 font-semibold">Distributed Systems & Web Architect</div>
+              <div className="text-[10px] text-cyan-600 dark:text-cyan-400 font-semibold">Computer Engineer & Full-Stack Architect</div>
             </div>
 
             <div className="p-3 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/5 space-y-1 text-[11px] shadow-sm">
@@ -638,7 +638,7 @@ export const CommandCenterWorkbench = () => {
                     Elias Yirga
                     <br />
                     <span className="text-zinc-700 dark:text-zinc-300 font-extrabold">
-                      Distributed Systems & Full-Stack Architect
+                      Computer Engineer & Full-Stack Architect
                     </span>
                   </h1>
 

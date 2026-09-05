@@ -127,7 +127,7 @@ export const HeroSection = ({ onSelectProject }) => {
 
               <div className="p-2.5 rounded-xl bg-white/70 dark:bg-zinc-900/60 border border-zinc-200/70 dark:border-white/5 space-y-1">
                 <div className="text-[10px] text-zinc-500 uppercase">Core Strengths</div>
-                <div className="font-bold text-zinc-900 dark:text-white font-sans">Distributed Systems & Web</div>
+                <div className="font-bold text-zinc-900 dark:text-white font-sans">Computer Engineering & Web</div>
                 <div className="text-[11px] text-zinc-600 dark:text-zinc-400">Sub-100ms p95, High Availability</div>
               </div>
 
@@ -173,7 +173,7 @@ export const HeroSection = ({ onSelectProject }) => {
                 Elias Yirga.
                 <br />
                 <span className="text-zinc-700 dark:text-zinc-300 font-medium">
-                  Full-stack software & distributed systems engineer.
+                  Full-stack software & computer engineer.
                 </span>
               </h1>
             </div>
