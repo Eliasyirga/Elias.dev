@@ -7,11 +7,11 @@
     --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
-    /* Light Theme (Swiss Precision & Crisp Whitepaper) */
+    /* Light Theme (Swiss Precision & Crisp Minimalist Studio) */
     --bg-canvas: #f8fafc;
     --bg-surface: #ffffff;
     --bg-subtle: #f1f5f9;
-    --bg-card: rgba(255, 255, 255, 0.85);
+    --bg-card: rgba(255, 255, 255, 0.88);
     --border-subtle: #e2e8f0;
     --border-strong: #94a3b8;
     --text-primary: #0f172a;
@@ -19,25 +19,27 @@
     --text-muted: #64748b;
     --accent: #0f172a;
     --accent-subtle: #f1f5f9;
-    --glow-primary: rgba(14, 165, 233, 0.12);
-    --glow-secondary: rgba(16, 185, 129, 0.12);
+    --glow-primary: rgba(14, 165, 233, 0.15);
+    --glow-secondary: rgba(16, 185, 129, 0.14);
+    --glow-accent: rgba(99, 102, 241, 0.12);
   }
 
   .dark {
-    /* Dark Theme (Carbon Obsidian, Deep Space & Quantum Glow) */
+    /* Dark Theme (Deep Carbon Obsidian & Quantum Cyan Glow) */
     --bg-canvas: #09090b;
     --bg-surface: #111115;
     --bg-subtle: #18181f;
-    --bg-card: rgba(17, 17, 23, 0.75);
-    --border-subtle: rgba(255, 255, 255, 0.09);
-    --border-strong: rgba(255, 255, 255, 0.22);
+    --bg-card: rgba(17, 17, 23, 0.82);
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.24);
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
     --text-muted: #64748b;
     --accent: #f8fafc;
     --accent-subtle: #272733;
-    --glow-primary: rgba(56, 189, 248, 0.18);
-    --glow-secondary: rgba(52, 211, 153, 0.16);
+    --glow-primary: rgba(56, 189, 248, 0.22);
+    --glow-secondary: rgba(52, 211, 153, 0.18);
+    --glow-accent: rgba(129, 140, 248, 0.16);
   }
 
   * {
@@ -67,48 +69,49 @@
 /* Atmospheric Ambient Background & Mesh Lighting */
 .bg-ambient-mesh {
   background-image: 
-    radial-gradient(at 10% 10%, var(--glow-primary) 0px, transparent 50%),
-    radial-gradient(at 90% 20%, var(--glow-secondary) 0px, transparent 45%),
-    radial-gradient(at 50% 80%, rgba(99, 102, 241, 0.08) 0px, transparent 50%);
+    radial-gradient(at 15% 15%, var(--glow-primary) 0px, transparent 45%),
+    radial-gradient(at 85% 25%, var(--glow-secondary) 0px, transparent 40%),
+    radial-gradient(at 50% 75%, var(--glow-accent) 0px, transparent 50%),
+    radial-gradient(at 80% 90%, var(--glow-primary) 0px, transparent 45%);
   background-attachment: fixed;
 }
 
 /* Technical Blueprint Grid Pattern */
 .bg-tech-grid-dark {
-  background-size: 36px 36px;
+  background-size: 40px 40px;
   background-image: 
     linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
 }
 
 .bg-tech-grid-light {
-  background-size: 36px 36px;
+  background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(15, 23, 42, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(15, 23, 42, 0.045) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.045) 1px, transparent 1px);
 }
 
 /* Glassmorphism & High-Impact Cards */
 .tech-card {
   background-color: var(--bg-card);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-subtle);
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04);
 }
 
 .dark .tech-card {
-  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px -4px rgba(0, 0, 0, 0.45);
 }
 
 .tech-card:hover {
   border-color: var(--border-strong);
-  box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.08);
 }
 
 .dark .tech-card:hover {
-  box-shadow: 0 16px 40px -4px rgba(0, 0, 0, 0.6), 0 0 20px -2px rgba(56, 189, 248, 0.08);
+  box-shadow: 0 16px 44px -4px rgba(0, 0, 0, 0.65), 0 0 24px -2px rgba(56, 189, 248, 0.12);
 }
 
 .tech-card-interactive {
@@ -120,22 +123,38 @@
   transform: translateY(-2px);
 }
 
-/* Glowing Border Pill */
-.glow-badge {
+/* Glowing Border Gradient Animation */
+.glow-border {
   position: relative;
 }
 
-.glow-badge::before {
+.glow-border::before {
   content: '';
   position: absolute;
   inset: -1px;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.4), rgba(52, 211, 153, 0.4));
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.5), rgba(52, 211, 153, 0.5), rgba(99, 102, 241, 0.3));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
+}
+
+/* Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
 }
 
 /* Crisp Scrollbar */
