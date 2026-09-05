@@ -4,10 +4,10 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { Spinner } from "./Components/common/Spinner";
 import { ErrorBoundary } from "./Components/common/ErrorBoundary";
 
-const HomePage = lazy(() => import("./Pages/HomePage"));
-const AboutPage = lazy(() => import("./Pages/AboutPage"));
-const ProjectDetailPage = lazy(() => import("./Pages/ProjectDetailPage"));
-const NotFoundPage = lazy(() => import("./Pages/NotFoundPage"));
+const HomePage = lazy(() => import("./pages/HomePage"));
+const AboutPage = lazy(() => import("./pages/AboutPage"));
+const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 const router = createBrowserRouter([
   {
