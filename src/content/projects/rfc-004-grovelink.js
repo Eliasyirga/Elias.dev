@@ -444,10 +444,10 @@ class TaskDeltaMerger {
   schemaSpecification: "Normalized SQLite schema with task_id (UUID), vector_clock (INT), status (ENUM), payload (JSON), and sync_state (BIT).",
   failureModes: ["Complete network failure: Full offline CRUD operations continue in local SQLite."],
   futureRoadmap: ["Peer-to-peer Wi-Fi Direct and BLE task exchange for multi-worker offline mesh synchronization."],
-  image: "/Capture5.PNG",
+  image: "/TaskFlow.PNG",
   gallery: [
-    { src: "/Capture5.PNG", caption: "Mobile Task Board & Kanban Telemetry View" },
-    { src: "/Capture1.PNG", caption: "Conflict Resolution & Offline Sync Pipeline" },
+    { src: "/TaskFlow.PNG", caption: "Mobile Task Board & Task State Telemetry" },
+    { src: "/TaskFlow2.PNG", caption: "Interactive Task Details & Reminder Scheduler" },
   ],
   liveUrl: "#",
   githubUrl: "https://github.com/Eliasyirga/Task-Flow",

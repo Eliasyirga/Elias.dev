@@ -607,10 +607,10 @@ function validateInquiryPayload(body) {
     year: "2025",
     status: "Production",
     featured: false,
-    image: "/Capture5.PNG",
+    image: "/TaskFlow.PNG",
     gallery: [
-      { src: "/Capture5.PNG", caption: "Mobile Task Board & Kanban Telemetry View" },
-      { src: "/Capture1.PNG", caption: "Conflict Resolution & Offline Sync Pipeline" },
+      { src: "/TaskFlow.PNG", caption: "Mobile Task Board & Task State Telemetry" },
+      { src: "/TaskFlow2.PNG", caption: "Interactive Task Details & Reminder Scheduler" },
     ],
     liveUrl: "#",
     githubUrl: "https://github.com/Eliasyirga/Task-Flow",
