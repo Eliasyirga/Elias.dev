@@ -306,7 +306,7 @@ export async function reserveVintageItem(itemId, buyerId) {
       { src: "/Capture.PNG", caption: "Core Web Vitals Optimization Suite" },
     ],
     liveUrl: "https://www.grovelinkconsultplc.com/",
-    githubUrl: "https://github.com/eliasyirga/grovelink",
+    githubUrl: "https://github.com/Eliasyirga/Glove-Link-consult",
     stack: ["React", "Vite", "TailwindCSS", "Cloudflare CDN", "Schema.org"],
     metrics: [
       { label: "Core Web Vitals (LCP)", value: "0.68s", delta: "-60%" },

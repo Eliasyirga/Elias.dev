@@ -74,7 +74,7 @@ export async function loadLocaleDictionary(locale, namespace) {
     { src: "/Capture77.PNG", caption: "Global Logistics Tracking Interface" },
   ],
   liveUrl: "https://grovelink.eliasdev.com",
-  githubUrl: "https://github.com/eliasyirga/grovelink",
+  githubUrl: "https://github.com/Eliasyirga/Glove-Link-consult",
 };
 
 export const rfc005 = {
