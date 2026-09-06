@@ -10,12 +10,18 @@ export const ProjectFeed = () => {
   const filterOptions = [
     { id: "all", label: "ALL SYSTEMS" },
     { id: "distributed", label: "DISTRIBUTED & REALTIME" },
+    { id: "mobile", label: "MOBILE & OFFLINE APPS" },
     { id: "saas", label: "FULL-STACK SAAS" },
     { id: "frontend", label: "FRONTEND & UI PERFORMANCE" },
   ];
 
   const filteredProjects = projects.filter((project) => {
     if (activeFilter === "all") return true;
+    if (activeFilter === "mobile")
+      return (
+        project.category.toLowerCase().includes("mobile") ||
+        project.stack?.some((s) => s.toLowerCase().includes("flutter") || s.toLowerCase().includes("dart"))
+      );
     if (activeFilter === "distributed")
       return (
         project.category.toLowerCase().includes("distributed") ||

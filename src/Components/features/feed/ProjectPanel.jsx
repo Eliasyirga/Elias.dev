@@ -78,7 +78,23 @@ export const ProjectPanel = ({ project, index }) => {
               </a>
             )}
 
-            {project.githubUrl && project.githubUrl !== "#" && (
+            {project.githubRepos && project.githubRepos.length > 0 ? (
+              <div className="flex items-center gap-2">
+                {project.githubRepos.map((repo, idx) => (
+                  <a
+                    key={idx}
+                    href={repo.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-zinc-400 hover:text-cyan-400 transition-colors text-xs"
+                    title={`View ${repo.name} Repository`}
+                  >
+                    <Github className="w-3.5 h-3.5" />
+                    <span>{repo.name}</span>
+                  </a>
+                ))}
+              </div>
+            ) : project.githubUrl && project.githubUrl !== "#" ? (
               <a
                 href={project.githubUrl}
                 target="_blank"
@@ -88,7 +104,7 @@ export const ProjectPanel = ({ project, index }) => {
               >
                 <Github className="w-3.5 h-3.5" />
               </a>
-            )}
+            ) : null}
           </div>
         </div>
       </div>

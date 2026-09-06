@@ -138,7 +138,22 @@ export const ProjectModal = ({ project, onClose }) => {
                         <ArrowUpRight className="w-4 h-4" />
                       </a>
                     )}
-                    {project.githubUrl && (
+                    {project.githubRepos && project.githubRepos.length > 0 ? (
+                      <div className="flex flex-col gap-2 w-full">
+                        {project.githubRepos.map((repo, idx) => (
+                          <a
+                            key={idx}
+                            href={repo.url}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl border border-zinc-300 dark:border-white/10 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                          >
+                            <Github className="w-4 h-4" />
+                            <span>SOURCE ({repo.name.toUpperCase()})</span>
+                          </a>
+                        ))}
+                      </div>
+                    ) : project.githubUrl && project.githubUrl !== "#" ? (
                       <a
                         href={project.githubUrl}
                         target="_blank"
@@ -148,7 +163,7 @@ export const ProjectModal = ({ project, onClose }) => {
                         <Github className="w-4 h-4" />
                         <span>VIEW_SOURCE_CODE</span>
                       </a>
-                    )}
+                    ) : null}
                   </div>
                 </div>
 

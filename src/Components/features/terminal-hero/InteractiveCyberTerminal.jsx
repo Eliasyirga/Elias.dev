@@ -77,7 +77,8 @@ export const InteractiveCyberTerminal = () => {
   [5] chillmovies         - Media Catalog & Real-Time Discovery Engine
   [6] tarikshiro          - High-Conversion Hospitality Ordering Engine
   [7] ethioamber          - Global B2B Export & Trade Infrastructure
-  [8] marmik              - Corporate Architectural Engineering Identity`,
+  [8] marmik              - Corporate Architectural Engineering Identity
+  [9] taskflow            - Offline-First Mobile Task & State Sync Engine`,
         });
         break;
 

@@ -126,6 +126,11 @@ async function allocateNearestUnit(incidentId, location, radiusMeters = 5000) {
     { src: "/bahirlink.PNG", caption: "Dispatch Command Center & Spatial R-Tree Visualizer" },
     { src: "/Capture77.PNG", caption: "Emergency Route Tracking & Unit Telemetry Map" },
   ],
-  liveUrl: "https://bahirlink.org",
-  githubUrl: "https://github.com/eliasyirga/bahirlink",
+  liveUrl: "https://bahirdarlinkweb.vercel.app/",
+  githubUrl: "https://github.com/Eliasyirga/BahirLink-Backend",
+  githubRepos: [
+    { name: "Backend API", url: "https://github.com/Eliasyirga/BahirLink-Backend" },
+    { name: "Mobile App", url: "https://github.com/Eliasyirga/BahirLink-App" },
+    { name: "Web Client", url: "https://github.com/biniambeza/bahirdarLink_web" },
+  ],
 };

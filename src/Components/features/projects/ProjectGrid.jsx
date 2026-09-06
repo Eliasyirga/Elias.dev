@@ -9,12 +9,18 @@ export const ProjectGrid = () => {
   const categories = [
     { id: "all", label: "All Systems" },
     { id: "distributed", label: "Distributed & Backend" },
+    { id: "mobile", label: "Mobile Apps & Systems" },
     { id: "fullstack", label: "Full Stack SaaS" },
     { id: "frontend", label: "Frontend Architecture" },
   ];
 
   const filteredProjects = projects.filter((project) => {
     if (filter === "all") return true;
+    if (filter === "mobile")
+      return (
+        project.category.toLowerCase().includes("mobile") ||
+        project.stack?.some((s) => s.toLowerCase().includes("flutter") || s.toLowerCase().includes("dart"))
+      );
     if (filter === "distributed")
       return (
         project.category.toLowerCase().includes("distributed") ||

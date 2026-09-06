@@ -1,7 +1,7 @@
 import { rfc001 } from "./projects/rfc-001-bahirlink";
 import { rfc002 } from "./projects/rfc-002-jobify";
 import { rfc003 } from "./projects/rfc-003-vintage-marketplace";
-import { rfc004, rfc005, rfc006, rfc007, rfc008 } from "./projects/rfc-004-grovelink";
+import { rfc004, rfc005, rfc006, rfc007, rfc008, rfc009 } from "./projects/rfc-004-grovelink";
 
 export const projectsList = [
   rfc001,
@@ -12,6 +12,7 @@ export const projectsList = [
   rfc006,
   rfc007,
   rfc008,
+  rfc009,
 ];
 
 export const getProjectBySlug = (slug) => {

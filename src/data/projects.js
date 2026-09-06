@@ -22,7 +22,12 @@ export const projects = [
       { src: "/Capture1.PNG", caption: "Spatial Analytics & Multi-Agency Geo-Fencing" },
     ],
     liveUrl: "https://bahirdarlinkweb.vercel.app/",
-    githubUrl: "https://github.com/eliasyirga/bahirlink",
+    githubUrl: "https://github.com/Eliasyirga/BahirLink-Backend",
+    githubRepos: [
+      { name: "Backend", url: "https://github.com/Eliasyirga/BahirLink-Backend" },
+      { name: "Mobile App", url: "https://github.com/Eliasyirga/BahirLink-App" },
+      { name: "Web Client", url: "https://github.com/biniambeza/bahirdarLink_web" },
+    ],
     stack: ["Node.js", "PostgreSQL", "Flutter", "Redis", "WebSockets", "Docker"],
     metrics: [
       { label: "p95 Dispatch Latency", value: "< 450ms", delta: "-68%" },
@@ -370,7 +375,7 @@ export async function reserveVintageItem(itemId, buyerId) {
       { src: "/Capture1.PNG", caption: "Debounced Multi-Facet Filter Stream" },
     ],
     liveUrl: "https://chill-movies.vercel.app/",
-    githubUrl: "https://github.com/eliasyirga/chillmovies",
+    githubUrl: "https://github.com/Eliasyirga/chillmovies",
     stack: ["React", "TMDB API", "Framer Motion", "TailwindCSS", "LocalStorage"],
     metrics: [
       { label: "Client Cache Hit Rate", value: "84%", delta: "+84%" },
@@ -427,7 +432,7 @@ useEffect(() => {
   {
     id: "tarikshiro",
     slug: "tarikshiro",
-    title: "Tarikshiro",
+    title: "Tarik Restaurant",
     headline: "High-Conversion Hospitality Ordering & Interactive Menu UI",
     problemStatement:
       "Hospitality client experienced 45% mobile checkout drop-offs due to complex multi-step ordering forms.",
@@ -441,7 +446,7 @@ useEffect(() => {
       { src: "/Capture.PNG", caption: "Zero-Latency Mobile Cart Sheet" },
     ],
     liveUrl: "https://tarik-shiro.vercel.app/",
-    githubUrl: "https://github.com/eliasyirga/tarikshiro",
+    githubUrl: "https://github.com/Eliasyirga/Tarik-Restaurant",
     stack: ["React", "TailwindCSS", "Framer Motion", "Vite"],
     metrics: [
       { label: "Checkout Funnel Completion", value: "78%", delta: "+33%" },
@@ -495,7 +500,7 @@ useEffect(() => {
       { src: "/Capture88.PNG", caption: "Multilingual RFQ & Contract Dispatch Engine" },
     ],
     liveUrl: "https://ethioambertrading.com/",
-    githubUrl: "#",
+    githubUrl: "https://github.com/Eliasyirga/Ethio-Amber",
     stack: ["React", "PHP API", "cPanel", "TailwindCSS", "i18n"],
     metrics: [
       { label: "Inquiry Conversion Rate", value: "14.2%", delta: "+4.8%" },
@@ -589,6 +594,84 @@ function validateInquiryPayload(body) {
       ],
       schemaSummary: "Corporate service hierarchies and structural audit project models.",
       futureImprovements: ["Interactive 3D Three.js building inspection viewport."],
+    },
+  },
+  {
+    id: "taskflow",
+    slug: "taskflow",
+    title: "TaskFlow Mobile",
+    headline: "Offline-First Mobile Task Management & Real-Time Sync Engine",
+    problemStatement:
+      "Distributed field operations and mobile teams suffered from frequent network dropouts, lost task states, and high synchronization latency in remote environments.",
+    category: "Mobile Architecture / Systems",
+    year: "2025",
+    status: "Production",
+    featured: false,
+    image: "/Capture5.PNG",
+    gallery: [
+      { src: "/Capture5.PNG", caption: "Mobile Task Board & Kanban Telemetry View" },
+      { src: "/Capture1.PNG", caption: "Conflict Resolution & Offline Sync Pipeline" },
+    ],
+    liveUrl: "#",
+    githubUrl: "https://github.com/Eliasyirga/Task-Flow",
+    stack: ["Flutter", "Dart", "SQLite", "Firebase", "Bloc Pattern", "WebSockets"],
+    metrics: [
+      { label: "Offline Sync Conflict Rate", value: "< 0.01%", delta: "-99%" },
+      { label: "Cold Start Latency", value: "280ms", delta: "-55%" },
+      { label: "Battery Efficiency", value: "+42%", delta: "Delta compression" },
+    ],
+    rfc: {
+      summary:
+        "High-performance offline-first mobile architecture utilizing local SQLite caching, CRDT conflict resolution, and background delta synchronization over WebSockets.",
+      architectureDiagram: `
++----------------------+       +-----------------------+       +---------------------+
+| Flutter Mobile UI    | <---> | SQLite Local Cache    | <---> | Delta Sync Worker   |
+| (Bloc State Machine) |       | (CRDT Log Store)      |       | (Background Stream) |
++----------------------+       +-----------------------+       +---------------------+
+                                                                          |
+                                                                          v (WSS / HTTPS)
+                                                               +---------------------+
+                                                               | Cloud API & Storage |
+                                                               | (Firebase / Node.js)|
+                                                               +---------------------+
+      `,
+      decisions: [
+        {
+          topic: "Local State & Offline Persistence",
+          chosen: "SQLite Local Store with CRDT Conflict Resolution",
+          alternative: "SharedPreferences / AsyncStorage",
+          rationale:
+            "Enabled atomic ACID operations and structured queries for thousands of offline tasks.",
+        },
+        {
+          topic: "State Management Architecture",
+          chosen: "Bloc Pattern with Stream-Based Reactive Events",
+          alternative: "Provider / SetState",
+          rationale:
+            "Decoupled UI components from data synchronizers and simplified edge-case testing.",
+        },
+      ],
+      technicalHurdles: [
+        {
+          title: "Two-Way Synchronization and Clock Drift",
+          description:
+            "Concurrent offline modifications by multiple users caused inconsistent task updates upon reconnection.",
+          solution:
+            "Implemented vector clock logical timestamps and deterministic last-write-wins with field-level delta merging.",
+          codeSnippet: `// Delta Sync Merger
+Future<void> mergeTaskDelta(TaskDelta remoteDelta) async {
+  final localTask = await db.getTask(remoteDelta.id);
+  if (localTask == null || remoteDelta.vectorClock > localTask.vectorClock) {
+    await db.upsertTask(remoteDelta.toTask());
+  }
+}`,
+        },
+      ],
+      schemaSummary:
+        "Normalized SQLite task, tag, and change-log schemas with indexing on status and sync_state.",
+      futureImprovements: [
+        "End-to-end encrypted peer-to-peer mesh synchronization for zero-internet field operations.",
+      ],
     },
   },
 ];

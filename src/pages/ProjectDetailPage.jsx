@@ -93,7 +93,7 @@ export const ProjectDetailPage = () => {
 
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 pt-2 font-mono text-xs">
-            {project.liveUrl && (
+            {project.liveUrl && project.liveUrl !== "#" && (
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -104,7 +104,23 @@ export const ProjectDetailPage = () => {
                 <ArrowUpRight className="w-4 h-4" />
               </a>
             )}
-            {project.githubUrl && (
+            {project.githubRepos && project.githubRepos.length > 0 ? (
+              <div className="flex flex-wrap gap-2">
+                {project.githubRepos.map((repo, idx) => (
+                  <a
+                    key={idx}
+                    href={repo.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-1.5 px-3 py-2.5 rounded border border-zinc-300 dark:border-zinc-700 text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+                    title={`View ${repo.name} Repository`}
+                  >
+                    <Github className="w-4 h-4" />
+                    <span>{repo.name.toUpperCase()} REPO</span>
+                  </a>
+                ))}
+              </div>
+            ) : project.githubUrl && project.githubUrl !== "#" ? (
               <a
                 href={project.githubUrl}
                 target="_blank"
@@ -114,7 +130,7 @@ export const ProjectDetailPage = () => {
                 <Github className="w-4 h-4" />
                 <span>VIEW_REPOSITORY</span>
               </a>
-            )}
+            ) : null}
           </div>
         </div>
 
