@@ -53,9 +53,9 @@ export const SkillsBentoSection = () => {
   const totalFilteredCount = filteredCategories.reduce((acc, curr) => acc + curr.items.length, 0);
 
   return (
-    <section id="skills" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-10">
+    <section id="skills" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-8 sm:space-y-10">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-200 dark:border-white/10 pb-5">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-zinc-200 dark:border-white/10 pb-4 sm:pb-5">
         <div className="space-y-2">
           <div className="font-mono text-xs text-zinc-500 flex items-center gap-2">
             <span className="text-cyan-500 font-bold">// 03</span>

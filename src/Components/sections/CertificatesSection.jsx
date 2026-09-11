@@ -18,9 +18,9 @@ export const CertificatesSection = () => {
   const [activeCert, setActiveCert] = useState(null);
 
   return (
-    <section id="certificates" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-12">
+    <section id="certificates" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-8 sm:space-y-12">
       {/* Section Header */}
-      <div className="space-y-2 border-b border-zinc-200 dark:border-white/10 pb-5">
+      <div className="space-y-2 border-b border-zinc-200 dark:border-white/10 pb-4 sm:pb-5">
         <div className="font-mono text-xs text-zinc-500 flex items-center gap-2">
           <span className="text-cyan-500 font-bold">// 05</span>
           <span>ACCREDITATIONS & VERIFIED_CREDENTIALS</span>

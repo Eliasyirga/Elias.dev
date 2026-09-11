@@ -82,7 +82,7 @@ export const HomePage = () => {
           <WindowsDesktop />
         </WindowsOSProvider>
       ) : (
-        <div className="min-h-screen bg-tech-grid-light dark:bg-tech-grid-dark bg-[#f8fafc] dark:bg-[#09090b] bg-ambient-mesh text-zinc-900 dark:text-zinc-100 selection:bg-cyan-500 selection:text-white dark:selection:bg-cyan-400 dark:selection:text-zinc-950">
+        <div className="min-h-screen w-full overflow-x-hidden bg-[#f8fafc] dark:bg-[#09090b] text-zinc-900 dark:text-zinc-100 selection:bg-cyan-500 selection:text-white dark:selection:bg-cyan-400 dark:selection:text-zinc-950">
           <FloatingNavbar onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
           <main className="space-y-4">
             <HeroSection onSelectProject={(p) => setActiveProjectModal(p)} />

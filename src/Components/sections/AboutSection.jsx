@@ -40,22 +40,22 @@ export const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-10">
+    <section id="about" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-8 sm:space-y-10">
       {/* Section Header */}
-      <div className="space-y-2 border-b border-zinc-200 dark:border-white/10 pb-5">
+      <div className="space-y-2 border-b border-zinc-200 dark:border-white/10 pb-4 sm:pb-5">
         <div className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold uppercase tracking-wider">
           <User className="w-4 h-4" />
           <span>About Me</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-black text-zinc-900 dark:text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-900 dark:text-white tracking-tight">
           Background & Engineering Philosophy
         </h2>
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
         {/* Profile Bio Card */}
-        <div className="lg:col-span-6 rounded-3xl p-6 sm:p-8 border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#12141a] space-y-5 flex flex-col justify-between shadow-sm">
+        <div className="lg:col-span-6 rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#12141a] space-y-5 flex flex-col justify-between shadow-sm">
           <div className="space-y-4">
             <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
               Driven by architectural clarity and dependable execution.

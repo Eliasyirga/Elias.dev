@@ -36,9 +36,9 @@ export const BentoProjectsSection = ({ onSelectProject }) => {
   const gridProjects = filteredProjects.filter(p => p.id !== heroProject?.id);
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-10">
+    <section id="projects" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-8 sm:space-y-10">
       {/* Section Header */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-zinc-200 dark:border-white/10 pb-5">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-zinc-200 dark:border-white/10 pb-4 sm:pb-5">
         <div className="space-y-2">
           <div className="font-mono text-xs text-zinc-500 flex items-center gap-2">
             <span className="text-cyan-500 font-bold">// 02</span>
@@ -53,7 +53,7 @@ export const BentoProjectsSection = ({ onSelectProject }) => {
         </div>
 
         {/* Filter Pills */}
-        <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-zinc-100 dark:bg-zinc-900/90 border border-zinc-200 dark:border-white/10 font-mono text-xs w-full sm:w-auto overflow-x-auto shadow-inner">
+        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-zinc-100 dark:bg-zinc-900/90 border border-zinc-200 dark:border-white/10 font-mono text-xs w-full sm:w-auto overflow-x-auto shadow-inner">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -71,10 +71,10 @@ export const BentoProjectsSection = ({ onSelectProject }) => {
       </div>
 
       {/* Main Bento Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6">
         {/* Large Featured Hero Card (BahirLink) */}
         {(selectedCategory === "All" || heroProject?.category?.toLowerCase().includes(selectedCategory.toLowerCase())) && (
-          <div className="lg:col-span-12 tech-card rounded-2xl p-6 sm:p-8 border-zinc-300 dark:border-white/15 relative overflow-hidden group shadow-xl">
+          <div className="lg:col-span-12 tech-card rounded-2xl p-5 sm:p-8 border-zinc-300 dark:border-white/15 relative overflow-hidden group shadow-xl">
             {/* Background Glow Mesh */}
             <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 dark:bg-cyan-500/15 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
 
@@ -95,7 +95,7 @@ export const BentoProjectsSection = ({ onSelectProject }) => {
                 </div>
 
                 <div className="space-y-1.5">
-                  <h3 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight font-sans">
+                  <h3 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight font-sans">
                     {heroProject.title}
                   </h3>
                   <p className="text-xs sm:text-sm font-mono text-zinc-600 dark:text-zinc-400 leading-snug">
@@ -109,12 +109,12 @@ export const BentoProjectsSection = ({ onSelectProject }) => {
 
                 {/* Key Metrics */}
                 {heroProject.metrics && (
-                  <div className="grid grid-cols-3 gap-2.5 pt-1">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-2.5 pt-1">
                     {heroProject.metrics.map((m, i) => (
-                      <div key={i} className="p-3 rounded-xl bg-zinc-100/90 dark:bg-zinc-900/80 border border-zinc-200 dark:border-white/5 font-mono shadow-sm">
-                        <div className="text-[10px] text-zinc-500 truncate">{m.label}</div>
-                        <div className="text-sm sm:text-base font-black text-zinc-900 dark:text-white mt-0.5">{m.value}</div>
-                        {m.delta && <div className="text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">{m.delta}</div>}
+                      <div key={i} className="p-2.5 sm:p-3 rounded-xl bg-zinc-100/90 dark:bg-zinc-900/80 border border-zinc-200 dark:border-white/5 font-mono shadow-sm">
+                        <div className="text-[9px] sm:text-[10px] text-zinc-500 truncate">{m.label}</div>
+                        <div className="text-xs sm:text-base font-black text-zinc-900 dark:text-white mt-0.5">{m.value}</div>
+                        {m.delta && <div className="text-[9px] sm:text-[10px] text-emerald-600 dark:text-emerald-400 font-bold">{m.delta}</div>}
                       </div>
                     ))}
                   </div>

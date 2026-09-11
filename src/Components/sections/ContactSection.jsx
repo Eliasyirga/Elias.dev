@@ -38,26 +38,26 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-10">
+    <section id="contact" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-8 sm:space-y-10">
       {/* Section Header */}
-      <div className="space-y-2 border-b border-zinc-200 dark:border-white/10 pb-5">
+      <div className="space-y-2 border-b border-zinc-200 dark:border-white/10 pb-4 sm:pb-5">
         <div className="flex items-center gap-2 text-cyan-600 dark:text-cyan-400 font-mono text-xs font-bold uppercase tracking-wider">
           <Mail className="w-4 h-4" />
           <span>Contact</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-black text-zinc-900 dark:text-white tracking-tight">
+        <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-900 dark:text-white tracking-tight">
           Let's Build Something Great Together
         </h2>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400 font-sans max-w-xl">
+        <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans max-w-xl">
           Interested in working together or have an engineering role opening? Send me a message and I'll get back to you promptly.
         </p>
       </div>
 
       {/* Main Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6 items-stretch">
         
         {/* Left Info Card */}
-        <div className="lg:col-span-5 rounded-3xl p-6 sm:p-8 border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#12141a] flex flex-col justify-between space-y-6 shadow-sm">
+        <div className="lg:col-span-5 rounded-2xl sm:rounded-3xl p-5 sm:p-8 border border-zinc-200 dark:border-white/10 bg-white dark:bg-[#12141a] flex flex-col justify-between space-y-6 shadow-sm">
           <div className="space-y-5">
             <div className="space-y-2">
               <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
