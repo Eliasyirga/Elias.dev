@@ -249,7 +249,7 @@ export const ThreeDLaptopIDE = () => {
       const d2 = transformScreenPoint(sw - b_pad, -sh + b_pad);
       const d3 = transformScreenPoint(-sw + b_pad, -sh + b_pad);
 
-      // Draw Screen Surface Gradient
+      // Draw Screen Surface
       drawPoly([d0, d1, d2, d3], "#050608", "#00f0ff", 1);
 
       // Screen Ambient Glow

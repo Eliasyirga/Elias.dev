@@ -32,6 +32,9 @@ export const ThreeDBackground = () => {
       mouse.isHovered = true;
     };
 
+    // 5. Dynamic Shockwaves
+    const shockwaves = [];
+
     const handleClick = (e) => {
       // Spawn energetic shockwave burst at click
       shockwaves.push({
@@ -99,9 +102,6 @@ export const ThreeDBackground = () => {
       alpha: Math.random() * 0.8 + 0.2,
       speed: Math.random() * 0.04 + 0.02,
     }));
-
-    // 5. Dynamic Shockwaves
-    const shockwaves = [];
 
     let rotationX = 0;
     let rotationY = 0;
@@ -205,12 +205,7 @@ export const ThreeDBackground = () => {
         const p2 = project(gx, gyTop, gz, gridCenterX, gridCenterY);
 
         ctx.beginPath();
-        ctx.moveTo(p1.x, p1.y);
-        ctx.lineTo(p2.x, p2.y);
-        const beamGrad = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-        beamGrad.addColorStop(0, "rgba(0, 240, 255, 0.6)");
-        beamGrad.addColorStop(1, "rgba(0, 240, 255, 0)");
-        ctx.strokeStyle = beamGrad;
+        ctx.strokeStyle = "rgba(0, 240, 255, 0.45)";
         ctx.lineWidth = 1.8 * p1.scale;
         ctx.stroke();
 

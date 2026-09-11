@@ -178,7 +178,7 @@ export const BentoProjectsSection = ({ onSelectProject }) => {
                   alt={heroProject.title}
                   className="w-full h-full object-cover object-top opacity-90 group-hover/img:opacity-100 group-hover/img:scale-102 transition-all duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity flex items-end p-4">
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-end p-4">
                   <span className="font-mono text-xs text-white bg-black/80 backdrop-blur-md px-3 py-1 rounded-lg border border-white/20 flex items-center gap-1.5">
                     <FileCode className="w-3.5 h-3.5 text-cyan-400" />
                     <span>Click to open RFC architecture spec</span>

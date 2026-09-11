@@ -60,8 +60,7 @@ export const CredentialsDossier = () => {
                       alt={cert.title}
                       className="w-full h-full object-cover grayscale-[0.2] group-hover:grayscale-0 group-hover:scale-[1.03] transition-all duration-500"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/40 via-transparent to-transparent opacity-60" />
-                    <div className="absolute bottom-2 right-2 bg-zinc-950/80 border border-zinc-800 px-2 py-1 rounded text-[10px] text-zinc-300 flex items-center gap-1">
+                    <div className="absolute bottom-2 right-2 bg-zinc-950/90 border border-zinc-800 px-2 py-1 rounded text-[10px] text-zinc-300 flex items-center gap-1">
                       <Maximize2 className="w-3 h-3 text-sky-400" />
                       <span>INSPECT</span>
                     </div>

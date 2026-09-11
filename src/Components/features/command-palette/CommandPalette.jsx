@@ -33,14 +33,29 @@ export const CommandPalette = ({ isOpen, onClose }) => {
     }
   }, [isOpen]);
 
+  // Scroll helper
+  const scrollToSection = (id) => {
+    if (window.location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const el = document.querySelector(id);
+        el?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      const el = document.querySelector(id);
+      el?.scrollIntoView({ behavior: "smooth" });
+    }
+    onClose();
+  };
+
   // Build command groups
   const navigationItems = [
-    { id: "nav-hero", title: "Overview / Top", group: "Navigation", icon: Sparkles, action: () => scrollToSection("#hero") },
-    { id: "nav-projects", title: "Projects & Architectures", group: "Navigation", icon: Code2, action: () => scrollToSection("#projects") },
-    { id: "nav-stack", title: "Capabilities Matrix", group: "Navigation", icon: Code2, action: () => scrollToSection("#stack") },
+    { id: "nav-hero", title: "Overview & Workstation Top", group: "Navigation", icon: Sparkles, action: () => scrollToSection("#hero") },
+    { id: "nav-about", title: "About Elias & Engineering Philosophy", group: "Navigation", icon: FileText, action: () => scrollToSection("#about") },
+    { id: "nav-projects", title: "Projects & RFC Case Studies", group: "Navigation", icon: Code2, action: () => scrollToSection("#projects") },
+    { id: "nav-skills", title: "Technical Capabilities Matrix", group: "Navigation", icon: Code2, action: () => scrollToSection("#skills") },
     { id: "nav-experience", title: "Engineering Career Timeline", group: "Navigation", icon: FileText, action: () => scrollToSection("#experience") },
-    { id: "nav-credentials", title: "Verified Credentials", group: "Navigation", icon: FileText, action: () => scrollToSection("#credentials") },
-    { id: "nav-changelog", title: "System Revision Log", group: "Navigation", icon: FileText, action: () => scrollToSection("#changelog") },
+    { id: "nav-credentials", title: "Certificates & Credentials", group: "Navigation", icon: FileText, action: () => scrollToSection("#certificates") },
     { id: "nav-contact", title: "Contact & Communications", group: "Navigation", icon: Mail, action: () => scrollToSection("#contact") },
   ];
 
@@ -63,8 +78,8 @@ export const CommandPalette = ({ isOpen, onClose }) => {
   ];
 
   const externalItems = [
-    { id: "ext-github", title: "GitHub Profile", group: "External Links", icon: Github, action: () => window.open("https://github.com/eliasyirga", "_blank") },
-    { id: "ext-linkedin", title: "LinkedIn Profile", group: "External Links", icon: Linkedin, action: () => window.open("https://linkedin.com/in/eliasyirga", "_blank") },
+    { id: "ext-github", title: "GitHub Profile (@eliasyirga)", group: "External Links", icon: Github, action: () => window.open("https://github.com/eliasyirga", "_blank") },
+    { id: "ext-linkedin", title: "LinkedIn Profile", group: "External Links", icon: Linkedin, action: () => window.open("https://linkedin.com/in/elias-yirga-44a19b2a7", "_blank") },
     { id: "ext-email", title: "Send Email (eliasyirga575@gmail.com)", group: "External Links", icon: Mail, action: () => window.location.href = "mailto:eliasyirga575@gmail.com" },
   ];
 
@@ -78,19 +93,6 @@ export const CommandPalette = ({ isOpen, onClose }) => {
           item.group.toLowerCase().includes(query.toLowerCase())
       );
 
-  const scrollToSection = (id) => {
-    if (window.location.pathname !== "/") {
-      navigate("/");
-      setTimeout(() => {
-        const el = document.querySelector(id);
-        el?.scrollIntoView({ behavior: "smooth" });
-      }, 100);
-    } else {
-      const el = document.querySelector(id);
-      el?.scrollIntoView({ behavior: "smooth" });
-    }
-    onClose();
-  };
 
   const handleKeyDown = (e) => {
     if (e.key === "ArrowDown") {

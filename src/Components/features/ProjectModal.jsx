@@ -13,8 +13,18 @@ import {
   Activity,
   Terminal,
   Database,
-  Workflow
+  Workflow,
+  Sparkles,
+  Play
 } from "lucide-react";
+
+// Interactive Simulators
+import { SpatialSimulator } from "../dossier/interactive/SpatialSimulator";
+import { LiveClusterRepl } from "../dossier/interactive/LiveClusterRepl";
+import { KitchenOrderSimulator } from "../dossier/interactive/KitchenOrderSimulator";
+import { EscrowStateMachineSimulator } from "../dossier/interactive/EscrowStateMachineSimulator";
+import { QueryExplainSimulator } from "../dossier/interactive/QueryExplainSimulator";
+import { EdgeCdnSimulator } from "../dossier/interactive/EdgeCdnSimulator";
 
 export const ProjectModal = ({ project, onClose }) => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -45,7 +55,9 @@ export const ProjectModal = ({ project, onClose }) => {
     { id: "architecture", label: "02 // ARCHITECTURE", icon: Workflow },
     { id: "decisions", label: "03 // DECISIONS & TRADEOFFS", icon: Database },
     { id: "code", label: "04 // CODE & RECOVERY", icon: FileCode },
+    { id: "playground", label: "05 // LIVE SIMULATOR", icon: Play },
   ];
+
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-md animate-in fade-in duration-200">
@@ -329,6 +341,47 @@ export const ProjectModal = ({ project, onClose }) => {
               ))
             ) : (
               <p className="text-zinc-500 italic">No code hurdles documented for this project.</p>
+            )}
+          </div>
+        )}
+
+        {/* TAB 5: LIVE SIMULATOR PLAYGROUND */}
+        {activeTab === "playground" && (
+          <div className="space-y-4 animate-in fade-in duration-150">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-zinc-200 dark:border-white/10 font-mono text-xs">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+                <span className="font-bold text-zinc-900 dark:text-zinc-100">
+                  INTERACTIVE_ENGINEERING_PLAYGROUND
+                </span>
+              </div>
+              <span className="text-[11px] text-zinc-500">
+                Live In-Browser Algorithm Sandbox
+              </span>
+            </div>
+
+            {project.id === "bahirlink" ? (
+              <div className="space-y-4">
+                <SpatialSimulator />
+                <div className="pt-2">
+                  <LiveClusterRepl />
+                </div>
+              </div>
+            ) : project.category?.toLowerCase().includes("distributed") || project.category?.toLowerCase().includes("realtime") ? (
+              <div className="space-y-4">
+                <LiveClusterRepl />
+                <QueryExplainSimulator />
+              </div>
+            ) : project.category?.toLowerCase().includes("database") || project.stack?.includes("PostgreSQL") ? (
+              <div className="space-y-4">
+                <QueryExplainSimulator />
+                <LiveClusterRepl />
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <SpatialSimulator />
+                <LiveClusterRepl />
+              </div>
             )}
           </div>
         )}

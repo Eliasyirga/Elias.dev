@@ -80,7 +80,7 @@ export const SpatialSimulator = () => {
           className="md:col-span-8 relative h-64 sm:h-72 rounded border border-zinc-300 dark:border-zinc-700 bg-zinc-950 overflow-hidden cursor-crosshair select-none"
         >
           {/* Coordinate Grid Overlay */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:28px_28px] opacity-40" />
+          <div className="absolute inset-0 bg-zinc-950 opacity-90" />
 
           {/* Incident Marker */}
           <div

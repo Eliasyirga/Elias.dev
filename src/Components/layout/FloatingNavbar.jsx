@@ -8,15 +8,18 @@ import {
   Menu, 
   X, 
   Copy, 
-  Check,
-  Sparkles,
-  ArrowUpRight
+  Check, 
+  Sparkles, 
+  ArrowUpRight,
+  Search,
+  Command
 } from "lucide-react";
 
-export const FloatingNavbar = () => {
+export const FloatingNavbar = ({ onOpenCommandPalette }) => {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
   const [scrolled, setScrolled] = useState(false);
+  const [scrollPercent, setScrollPercent] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [copiedCli, setCopiedCli] = useState(false);
@@ -24,6 +27,11 @@ export const FloatingNavbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
+
+      const winScroll = document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolledRatio = height > 0 ? (winScroll / height) * 100 : 0;
+      setScrollPercent(Math.min(100, Math.max(0, scrolledRatio)));
 
       const sections = ["hero", "about", "projects", "skills", "experience", "certificates", "contact"];
       const scrollPosition = window.scrollY + 220;
@@ -60,6 +68,14 @@ export const FloatingNavbar = () => {
     setTimeout(() => setCopiedCli(false), 2200);
   };
 
+  const handleOpenPalette = () => {
+    if (onOpenCommandPalette) {
+      onOpenCommandPalette();
+    } else {
+      window.dispatchEvent(new CustomEvent("open-command-palette"));
+    }
+  };
+
   const scrollToSection = (e, href) => {
     e.preventDefault();
     setMobileMenuOpen(false);
@@ -72,12 +88,18 @@ export const FloatingNavbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center px-3 sm:px-6 py-2.5 sm:py-3.5 transition-all duration-300">
       <nav
-        className={`w-full max-w-6xl transition-all duration-300 rounded-2xl ${
+        className={`w-full max-w-6xl transition-all duration-300 rounded-2xl relative overflow-hidden ${
           scrolled
             ? "tech-card py-2 px-3 sm:px-5 shadow-2xl bg-white/80 dark:bg-[#0c0c10]/85 backdrop-blur-xl border-zinc-200/80 dark:border-white/10 ring-1 ring-black/5 dark:ring-white/5"
-            : "bg-white/40 dark:bg-zinc-950/40 backdrop-blur-md py-2 px-3 sm:px-4 border border-zinc-200/50 dark:border-white/5"
+            : "bg-white/50 dark:bg-zinc-950/50 backdrop-blur-md py-2 px-3 sm:px-4 border border-zinc-200/50 dark:border-white/5 shadow-sm"
         }`}
       >
+        {/* Scroll Progress Indicator Bar */}
+        <div 
+          className="absolute bottom-0 left-0 h-[2px] bg-cyan-500 transition-all duration-100 ease-out z-20"
+          style={{ width: `${scrollPercent}%` }}
+        />
+
         <div className="flex items-center justify-between gap-3">
           {/* Brand Logo / Terminal Prompt */}
           <a
@@ -128,10 +150,23 @@ export const FloatingNavbar = () => {
 
           {/* Quick Actions */}
           <div className="flex items-center gap-2">
+            {/* Quick Command Palette Pill */}
+            <button
+              onClick={handleOpenPalette}
+              className="flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-100/90 dark:bg-zinc-900/90 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white text-xs font-mono transition-all hover:scale-102 shadow-sm"
+              title="Open Command Palette (Cmd+K / Ctrl+K)"
+            >
+              <Search className="w-3.5 h-3.5 text-cyan-500" />
+              <span className="hidden sm:inline">Search</span>
+              <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] bg-zinc-200 dark:bg-zinc-800 rounded border border-zinc-300 dark:border-zinc-700 font-mono text-zinc-500">
+                ⌘K
+              </kbd>
+            </button>
+
             {/* CLI Command Pill */}
             <button
               onClick={copyCli}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50/80 dark:bg-zinc-900/80 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white text-xs font-mono transition-all group shadow-sm"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50/80 dark:bg-zinc-900/80 hover:bg-zinc-100 dark:hover:bg-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white text-xs font-mono transition-all group shadow-sm"
               title="Click to copy terminal command"
             >
               <Terminal className="w-3.5 h-3.5 text-cyan-500 group-hover:rotate-6 transition-transform" />
@@ -154,7 +189,8 @@ export const FloatingNavbar = () => {
               className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-zinc-900 hover:bg-black text-white dark:bg-zinc-100 dark:hover:bg-white dark:text-zinc-950 text-xs font-mono font-semibold transition-all shadow-sm hover:shadow-md active:scale-95"
             >
               <FileDown className="w-3.5 h-3.5 text-cyan-400 dark:text-cyan-600" />
-              <span>CV / RESUME</span>
+              <span className="hidden sm:inline">CV / RESUME</span>
+              <span className="sm:hidden">CV</span>
             </a>
 
             {/* Theme Toggle */}

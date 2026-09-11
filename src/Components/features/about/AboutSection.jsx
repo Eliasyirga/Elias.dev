@@ -85,8 +85,7 @@ export const AboutSection = () => {
                 alt="Elias Yirga Profile"
                 className="w-full h-full object-cover object-top grayscale-[0.2] hover:grayscale-0 transition-all duration-500"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent opacity-80" />
-              <div className="absolute bottom-3 left-3 right-3 font-mono text-[11px] text-zinc-300 flex justify-between">
+              <div className="absolute bottom-0 left-0 right-0 p-2.5 bg-zinc-950/90 font-mono text-[11px] text-zinc-300 flex justify-between border-t border-zinc-800">
                 <span>ELIAS YIRGA</span>
                 <span className="text-cyan-400">ADDIS ABABA / BD</span>
               </div>
