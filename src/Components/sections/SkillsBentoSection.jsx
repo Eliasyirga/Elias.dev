@@ -50,8 +50,6 @@ export const SkillsBentoSection = () => {
     })
     .filter(Boolean);
 
-  const totalFilteredCount = filteredCategories.reduce((acc, curr) => acc + curr.items.length, 0);
-
   return (
     <section id="skills" className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full space-y-8 sm:space-y-10">
       {/* Section Header */}
@@ -61,10 +59,10 @@ export const SkillsBentoSection = () => {
             <span className="text-cyan-500 font-bold">// 03</span>
             <span>CAPABILITIES & DOMAIN_MATRIX</span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-900 dark:text-zinc-100 tracking-tight">
             Technical Competencies & Skills
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans max-w-xl">
+          <p className="text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 font-sans max-w-xl leading-relaxed">
             Granular inventory of core languages, distributed backend infrastructure, relational modeling, and frontend component architectures.
           </p>
         </div>
@@ -77,18 +75,18 @@ export const SkillsBentoSection = () => {
             placeholder="Search skill (e.g. Node, React, Redis)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-9 pr-3 py-2 rounded-xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 text-xs font-mono text-zinc-900 dark:text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500 transition-colors shadow-inner"
+            className="w-full pl-9 pr-3 py-2 rounded-2xl bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/10 text-xs font-mono text-zinc-900 dark:text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-500 transition-colors shadow-inner"
           />
         </div>
       </div>
 
       {/* Domain Pills Filter */}
-      <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-xl bg-zinc-100 dark:bg-zinc-900/90 border border-zinc-200 dark:border-white/10 font-mono text-xs w-full sm:w-auto overflow-x-auto shadow-inner">
+      <div className="flex flex-wrap items-center gap-1.5 p-1 rounded-2xl bg-zinc-100 dark:bg-zinc-900/90 border border-zinc-200 dark:border-white/10 font-mono text-xs w-full sm:w-auto overflow-x-auto shadow-inner">
         {categories.map((cat) => (
           <button
             key={cat.id}
             onClick={() => setSelectedCategory(cat.id)}
-            className={`px-3 py-1.5 rounded-lg transition-all text-xs whitespace-nowrap ${
+            className={`px-3 py-1.5 rounded-xl transition-all text-xs font-semibold whitespace-nowrap ${
               selectedCategory === cat.id
                 ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-950 font-bold shadow-sm"
                 : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:bg-zinc-200/60 dark:hover:bg-zinc-800/60"
@@ -102,7 +100,7 @@ export const SkillsBentoSection = () => {
       {/* Grid of All Skill Domains */}
       <div className="space-y-10">
         {filteredCategories.length === 0 ? (
-          <div className="p-8 text-center font-mono text-xs text-zinc-500 rounded-2xl border border-dashed border-zinc-300 dark:border-white/10">
+          <div className="p-8 text-center font-mono text-xs text-zinc-500 rounded-3xl border border-dashed border-zinc-300 dark:border-white/10">
             No technical capabilities matched your query "{searchQuery}".
           </div>
         ) : (
@@ -111,42 +109,73 @@ export const SkillsBentoSection = () => {
               {/* Domain Group Header */}
               <div className="flex items-center justify-between pb-2 border-b border-zinc-200 dark:border-white/10 font-mono text-xs">
                 <div className="flex items-center gap-2">
-                  <span className="font-bold text-zinc-900 dark:text-zinc-100">{cat.category}</span>
+                  <span className="font-bold text-zinc-900 dark:text-zinc-100 text-sm">{cat.category}</span>
                   <span className="text-zinc-500 hidden sm:inline">// {cat.description}</span>
                 </div>
-                <span className="text-zinc-500 px-2.5 py-0.5 rounded-lg bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-white/5 text-[11px] font-semibold">
+                <span className="text-cyan-600 dark:text-cyan-400 px-2.5 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-[11px] font-bold">
                   {cat.items.length} Primitives
                 </span>
               </div>
 
               {/* Skills Cards Grid */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {cat.items.map((skill, idx) => (
-                  <div
-                    key={idx}
-                    className="tech-card rounded-2xl p-5 border-zinc-200/90 dark:border-white/10 space-y-3 flex flex-col justify-between hover:border-zinc-400 dark:hover:border-white/20 transition-all shadow-sm group"
-                  >
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between font-mono text-xs">
-                        <span className="font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-                          {skill.name}
-                        </span>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 border border-cyan-500/20">
-                          {skill.proficiency}
-                        </span>
+                {cat.items.map((skill, idx) => {
+                  const percent =
+                    skill.proficiency === "Expert"
+                      ? 95
+                      : skill.proficiency === "Advanced"
+                      ? 85
+                      : 75;
+                  const barColor =
+                    skill.proficiency === "Expert"
+                      ? "bg-cyan-500"
+                      : skill.proficiency === "Advanced"
+                      ? "bg-emerald-500"
+                      : "bg-blue-500";
+
+                  return (
+                    <div
+                      key={idx}
+                      className="rounded-3xl p-5 border border-zinc-200/80 dark:border-white/10 bg-white/80 dark:bg-[#11131a]/80 backdrop-blur-xl space-y-3.5 flex flex-col justify-between hover:border-cyan-500/40 dark:hover:border-cyan-500/40 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-lg group"
+                    >
+                      <div className="space-y-2">
+                        <div className="flex items-center justify-between font-mono text-xs">
+                          <span className="font-bold text-zinc-900 dark:text-zinc-100 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors text-sm">
+                            {skill.name}
+                          </span>
+                          <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 border border-zinc-200 dark:border-white/5">
+                            {skill.proficiency}
+                          </span>
+                        </div>
+
+                        <p className="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
+                          {skill.context}
+                        </p>
                       </div>
 
-                      <p className="text-xs text-zinc-600 dark:text-zinc-300 leading-relaxed font-sans">
-                        {skill.context}
-                      </p>
-                    </div>
+                      <div className="space-y-2 pt-2 border-t border-zinc-200/80 dark:border-white/10">
+                        {/* Visual Proficiency Meter */}
+                        <div className="space-y-1">
+                          <div className="flex items-center justify-between text-[10px] font-mono text-zinc-500">
+                            <span>Proficiency Level</span>
+                            <span className="font-bold text-zinc-700 dark:text-zinc-300">{percent}%</span>
+                          </div>
+                          <div className="h-1.5 w-full bg-zinc-100 dark:bg-zinc-800/90 rounded-full overflow-hidden">
+                            <div
+                              className={`h-full ${barColor} rounded-full transition-all duration-500`}
+                              style={{ width: `${percent}%` }}
+                            />
+                          </div>
+                        </div>
 
-                    <div className="font-mono text-[11px] text-zinc-500 pt-3 border-t border-zinc-200 dark:border-white/10 flex items-center justify-between">
-                      <span>EXPERIENCE:</span>
-                      <span className="font-bold text-zinc-800 dark:text-zinc-200">{skill.experienceYears}</span>
+                        <div className="font-mono text-[10px] text-zinc-500 flex items-center justify-between pt-1">
+                          <span>EXPERIENCE TRACK:</span>
+                          <span className="font-bold text-cyan-600 dark:text-cyan-400">{skill.experienceYears}</span>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           ))

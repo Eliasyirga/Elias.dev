@@ -13,11 +13,12 @@ import {
   Mail,
   ArrowRight,
   Sparkles,
+  Terminal,
 } from "lucide-react";
 import { useTheme } from "@/context/ThemeContext";
 import { projects } from "@/data/projects";
 
-export const CommandPalette = ({ isOpen, onClose }) => {
+export const CommandPalette = ({ isOpen, onClose, onSwitchToTerminal }) => {
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef(null);
@@ -83,7 +84,22 @@ export const CommandPalette = ({ isOpen, onClose }) => {
     { id: "ext-email", title: "Send Email (eliasyirga575@gmail.com)", group: "External Links", icon: Mail, action: () => window.location.href = "mailto:eliasyirga575@gmail.com" },
   ];
 
-  const allItems = [...navigationItems, ...projectItems, ...themeItems, ...externalItems];
+  const modeItems = onSwitchToTerminal
+    ? [
+        {
+          id: "mode-terminal",
+          title: "Launch Interactive Developer Terminal Command View",
+          group: "Developer Tools",
+          icon: Terminal,
+          action: () => {
+            onSwitchToTerminal();
+            onClose();
+          },
+        },
+      ]
+    : [];
+
+  const allItems = [...navigationItems, ...projectItems, ...modeItems, ...themeItems, ...externalItems];
 
   const filteredItems = query.trim() === ""
     ? allItems

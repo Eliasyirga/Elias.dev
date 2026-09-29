@@ -22,12 +22,12 @@ import {
 } from "lucide-react";
 import { ThreeDBackground } from "../features/hero/ThreeDBackground";
 
-export const HeroSection = ({ onSelectProject }) => {
+export const HeroSection = ({ onSelectProject, onSwitchToTerminal }) => {
   const [copied, setCopied] = useState(false);
   const [localTime, setLocalTime] = useState("");
   const [terminalInput, setTerminalInput] = useState("");
   const [terminalLogs, setTerminalLogs] = useState([
-    { text: "sys.init(): Elias Yirga Workstation v2.6 Ready.", type: "system" },
+    { text: "sys.init(): Elias Yirga Workstation v3.4 Ready.", type: "system" },
     { text: "Specialization: Full-Stack Web & Distributed Backend Architectures.", type: "info" },
   ]);
 
@@ -60,7 +60,7 @@ export const HeroSection = ({ onSelectProject }) => {
 
     switch (cleanCmd) {
       case "help":
-        response = "Available: whoami, skills, projects, rfc, contact, hire, clear";
+        response = "Available: whoami, skills, projects, rfc, terminal, contact, hire, clear";
         break;
       case "whoami":
         response = "Elias Yirga — Full-Stack Engineer & Bahir Dar University Computer Engineering Graduate.";
@@ -73,6 +73,14 @@ export const HeroSection = ({ onSelectProject }) => {
         response = "Featured RFC-001: BahirLink (Municipal Emergency Real-Time Dispatch System). Scroll to #projects.";
         const projSec = document.getElementById("projects");
         if (projSec) projSec.scrollIntoView({ behavior: "smooth" });
+        break;
+      case "terminal":
+      case "cli":
+        if (onSwitchToTerminal) {
+          onSwitchToTerminal();
+          return;
+        }
+        response = "Interactive Terminal mode is available on desktop screens.";
         break;
       case "hire":
       case "contact":
@@ -96,7 +104,7 @@ export const HeroSection = ({ onSelectProject }) => {
     setTerminalInput("");
   };
 
-  const commandChips = ["whoami", "skills", "projects", "hire", "clear"];
+  const commandChips = ["whoami", "skills", "projects", "terminal", "hire", "clear"];
 
   return (
     <section id="hero" className="relative min-h-[90vh] flex flex-col justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto w-full overflow-hidden">
@@ -128,7 +136,7 @@ export const HeroSection = ({ onSelectProject }) => {
             {/* Headline */}
             <div className="space-y-2">
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black text-zinc-900 dark:text-white tracking-tight leading-[1.1]">
-                Hi, I'm <span className="text-cyan-600 dark:text-cyan-400">Elias Yirga</span>
+                Hi, I'm <span className="text-gradient-cyan">Elias Yirga</span>
               </h1>
               <p className="text-lg sm:text-2xl font-bold text-zinc-700 dark:text-zinc-300">
                 Full-Stack Software Engineer & Computer Engineering Graduate
@@ -141,13 +149,24 @@ export const HeroSection = ({ onSelectProject }) => {
             </p>
 
             {/* Interactive Hero Quick CLI */}
-            <div className="rounded-2xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-3.5 sm:p-4 space-y-2.5 text-left font-mono text-xs shadow-sm">
-              <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 pb-2 text-[11px] text-zinc-500">
+            <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl p-3.5 sm:p-4 space-y-2.5 text-left font-mono text-xs shadow-md">
+              <div className="flex items-center justify-between border-b border-zinc-200 dark:border-white/10 pb-2 text-[11px] text-zinc-500">
                 <div className="flex items-center gap-1.5">
-                  <Terminal className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                  <Terminal className="w-3.5 h-3.5 text-cyan-500" />
                   <span className="font-bold text-zinc-800 dark:text-zinc-200">QUICK_INTERACTIVE_CLI</span>
                 </div>
-                <span className="text-[10px] hidden sm:inline text-zinc-400">Type a command or click a chip</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] hidden sm:inline text-zinc-400">Type command or click chip</span>
+                  {onSwitchToTerminal && (
+                    <button
+                      onClick={onSwitchToTerminal}
+                      className="hidden md:inline-flex items-center gap-1 text-[10px] text-cyan-500 hover:text-cyan-400 font-bold hover:underline"
+                      title="Open dedicated Terminal Command Workstation"
+                    >
+                      <span>Full CLI ↗</span>
+                    </button>
+                  )}
+                </div>
               </div>
 
               {/* Logs */}
@@ -279,17 +298,29 @@ export const HeroSection = ({ onSelectProject }) => {
           </div>
 
           {/* Right Profile Picture & Badges */}
-          <div className="relative shrink-0 mx-auto lg:mx-0">
-            <div className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-3xl overflow-hidden border-2 border-zinc-300 dark:border-zinc-800 shadow-xl bg-zinc-100 dark:bg-zinc-900 group">
+          <div className="relative shrink-0 mx-auto lg:mx-0 group">
+            {/* Ambient Multi-layer Glow Aura */}
+            <div className="absolute -inset-2.5 bg-gradient-to-tr from-cyan-500/30 via-indigo-500/20 to-emerald-500/30 rounded-[34px] blur-xl opacity-60 group-hover:opacity-90 transition-all duration-700 pointer-events-none animate-pulse-subtle" />
+
+            <div className="relative w-52 h-52 sm:w-64 sm:h-64 lg:w-72 lg:h-72 rounded-3xl overflow-hidden border-2 border-zinc-200 dark:border-white/10 shadow-2xl bg-zinc-100 dark:bg-zinc-900">
               <img
                 src="/vv.webp"
                 alt="Elias Yirga"
-                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
               />
+
+              {/* Bottom Live Glass HUD */}
+              <div className="absolute bottom-2.5 inset-x-2.5 p-2 rounded-2xl backdrop-blur-md bg-black/60 border border-white/15 flex items-center justify-between text-[11px] font-mono text-white shadow-lg">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="font-semibold text-emerald-300 text-[10px] sm:text-xs">AVAILABLE</span>
+                </div>
+                <span className="text-[10px] text-zinc-300">ADDIS ABABA / EAT</span>
+              </div>
             </div>
 
             {/* Floating Experience Badge */}
-            <div className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl flex items-center gap-2 sm:gap-2.5">
+            <div className="absolute -bottom-3 -left-3 sm:-bottom-4 sm:-left-4 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border border-zinc-200 dark:border-white/10 shadow-xl flex items-center gap-2 sm:gap-2.5 hover:scale-105 transition-transform">
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-cyan-500/10 flex items-center justify-center text-cyan-600 dark:text-cyan-400 font-bold">
                 <Briefcase className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
@@ -300,7 +331,7 @@ export const HeroSection = ({ onSelectProject }) => {
             </div>
 
             {/* Floating Degree Badge */}
-            <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 shadow-xl flex items-center gap-2 sm:gap-2.5">
+            <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md border border-zinc-200 dark:border-white/10 shadow-xl flex items-center gap-2 sm:gap-2.5 hover:scale-105 transition-transform">
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 dark:text-emerald-400 font-bold">
                 <GraduationCap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
               </div>
@@ -314,18 +345,18 @@ export const HeroSection = ({ onSelectProject }) => {
         </div>
 
         {/* Quick Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-zinc-200 dark:border-zinc-800">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-zinc-200 dark:border-white/10">
           {[
-            { label: "Production Experience", val: "4+ Years", desc: "Full-Stack & Distributed" },
-            { label: "Production Systems", val: "8+ Projects", desc: "Live Web & Mobile Platforms" },
-            { label: "Education", val: "B.Sc. Degree", desc: "Computer Engineering" },
-            { label: "Availability", val: "Immediate", desc: "Full-Time & Remote" },
+            { label: "Production Experience", val: "4+ Years", desc: "Full-Stack & Distributed", border: "hover:border-cyan-500/50" },
+            { label: "Production Systems", val: "8+ Projects", desc: "Live Web & Mobile Platforms", border: "hover:border-emerald-500/50" },
+            { label: "Education", val: "B.Sc. Degree", desc: "Computer Engineering", border: "hover:border-purple-500/50" },
+            { label: "Availability", val: "Immediate", desc: "Full-Time & Remote", border: "hover:border-amber-500/50" },
           ].map((stat, idx) => (
             <div
               key={idx}
-              className="p-3.5 sm:p-4 rounded-2xl bg-white dark:bg-zinc-900/80 border border-zinc-200 dark:border-zinc-800 space-y-1 shadow-sm text-center sm:text-left"
+              className={`p-3.5 sm:p-4 rounded-2xl bg-white/80 dark:bg-zinc-900/70 backdrop-blur-md border border-zinc-200 dark:border-white/10 ${stat.border} space-y-1 shadow-xs hover:shadow-md transition-all duration-300 text-center sm:text-left hover:-translate-y-0.5 group`}
             >
-              <div className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white tracking-tight">
+              <div className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white tracking-tight group-hover:scale-102 transition-transform">
                 {stat.val}
               </div>
               <div className="text-xs font-bold text-zinc-700 dark:text-zinc-300">

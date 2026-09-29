@@ -15,7 +15,7 @@ import {
   Command
 } from "lucide-react";
 
-export const FloatingNavbar = ({ onOpenCommandPalette }) => {
+export const FloatingNavbar = ({ onOpenCommandPalette, onSwitchToTerminal }) => {
   const { theme, toggleTheme } = useTheme();
   const isDark = theme === "dark";
   const [scrolled, setScrolled] = useState(false);
@@ -180,6 +180,18 @@ export const FloatingNavbar = ({ onOpenCommandPalette }) => {
                 <Copy className="w-3 h-3 opacity-40 group-hover:opacity-100 transition-opacity" />
               )}
             </button>
+
+            {/* Interactive Terminal Mode Switcher (Desktop only) */}
+            {onSwitchToTerminal && (
+              <button
+                onClick={onSwitchToTerminal}
+                className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-cyan-500/30 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 text-xs font-mono transition-all group shadow-sm"
+                title="Launch Interactive Terminal View"
+              >
+                <Terminal className="w-3.5 h-3.5 text-cyan-500 group-hover:scale-110 transition-transform" />
+                <span>TERMINAL</span>
+              </button>
+            )}
 
             {/* Resume Button */}
             <a
